@@ -1,12 +1,12 @@
 :root {
-  --background: #ffffff;
+  --background: #F9F4E7;
   --foreground: #171717;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
     --background: #0a0a0a;
-    --foreground: #ededed;
+    --foreground: #F9F4E7;
   }
 }
 
@@ -40,3 +40,72 @@ a {
     color-scheme: dark;
   }
 }
+
+/* styling for home page */
+
+/* styling for friends feed page */
+
+/* styling for upload page */
+
+/* styling for messages page */
+.message-preview-container {
+  background-color: #96A8FD;  /* Light blue background */
+  border-radius: 12px;
+  padding: 16px;
+  margin-bottom: 12px;
+  margin-right: 8px;
+  margin-left: 8px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.message-content {
+  display: flex;
+  align-items: center;
+}
+
+.message-preview-name {
+  font-weight: bold;
+  color: #D9F855;  
+  margin: 0 0 4px 0;
+  font-size: 24px;
+}
+
+.message-preview-message {
+  color: #333;
+  margin: 0;
+  font-size: 14px;
+}
+
+.message-preview-time {
+  color: #333;
+  font-size: 14px;
+  align-self: flex-start;
+}
+
+.avatar {
+  width: 50px;
+  height: 50px;
+  background-color: #ccc;
+  border-radius: 50%;
+  margin-right: 12px;
+}
+
+.messages-page {
+  padding: 16px;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.messages-header {
+  font-size: 32px;
+  font-weight: bold;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  text-align: center;
+  color: #96A8FD;
+}
+
+/* styling for profile page */
+
