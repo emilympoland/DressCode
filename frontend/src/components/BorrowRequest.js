@@ -4,7 +4,7 @@ import Link from 'next/link';
 import '../app/globals.css';
 // components/MessagePreview.js
 
-export default function MessagePreview({ name, time, message, id }) {
+export default function BorrowRequest({name, time, message, id }) {
     return (
         <Link href={`/messages/${id}`} style={{ textDecoration: 'none', color: 'inherit', display: 'block' }}>
         <div className="message-preview-container">
