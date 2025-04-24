@@ -1,10 +1,5 @@
 // app/profile/page.js
 
 export default function Profile() {
-    return (
-      <div>
-        <h1>Profile Page</h1>
-        <p>Welcome to the profile page!</p>
-      </div>
-    );
-  }
+  return <h1 className="text-3xl font-bold underline">Hello, Next.js!</h1>
+}
