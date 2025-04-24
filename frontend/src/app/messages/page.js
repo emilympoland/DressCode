@@ -11,6 +11,8 @@ const mockMessages = [
   { name: 'Justin', time: '11:11AM', message: 'Has requested to borrow an item.' },
   { name: 'Jeffrey', time: '8:23AM', message: 'You have approved their borrow request.' },
   { name: 'Bob', time: '7:55PM', message: 'Item is unavailable at that time.' },
+  { name: 'Ryan', time: '6:33PM', message: 'Has requested to borrow an item.' },
+  { name: 'Jasmine', time: '8:23PM', message: 'Has requested to borrow an item.' },
 ]
 
 export default function Messages() {
