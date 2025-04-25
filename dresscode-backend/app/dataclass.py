@@ -14,7 +14,6 @@ class Weather(Enum):
 
 class UserCreate(BaseModel):
     username: str
-    email: str
     password: str
 
 
