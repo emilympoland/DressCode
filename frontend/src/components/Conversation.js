@@ -2,6 +2,7 @@
 'use client';
 import { useState, useEffect } from 'react';
 import '../app/globals.css';
+import BorrowRequest from './BorrowRequest'; 
 
 export default function Conversation({ conversationId }) {
   const [messages, setMessages] = useState([]);
@@ -9,10 +10,9 @@ export default function Conversation({ conversationId }) {
   const [newMessage, setNewMessage] = useState('');
   
   useEffect(() => {
-    // mock data - replace this later w/ integration!
     const mockRequestInfo = {
       status: 'pending', 
-      itemImage: '/path-to-boot-image.jpg', // replace with image path when that is ready
+      itemImage: '/path-to-boot-image.jpg',
       itemName: 'Hiking Boots',
       dateRange: 'From 4/5/25 - 4/9/25'
     };
@@ -43,56 +43,18 @@ export default function Conversation({ conversationId }) {
   };
   
   const handleAction = (action) => {
-    // update request status based on action - how should this work?
     setRequestInfo({
       ...requestInfo,
       status: action === 'accept' ? 'approved' : 'declined'
     });
-    
-    // send to update API later when we integrate
+    // send update to backend later
   };
   
   return (
     <div className="conversation-container">
       <div className="message-list">
-       
-        <div className="request-card">
-          {requestInfo && (
-            <>
-              {requestInfo.status === 'pending' && (
-                <div className="borrow-request pending">
-                  <h2>Requests to Borrow</h2>
-                  <img src={requestInfo.itemImage} alt={requestInfo.itemName} className="item-image" />
-                  <p className="date-range">{requestInfo.dateRange}</p>
-                  <div className="action-buttons">
-                    <button 
-                      className="decline-button"
-                      onClick={() => handleAction('decline')}
-                    >
-                      decline
-                    </button>
-                    <button 
-                      className="accept-button"
-                      onClick={() => handleAction('accept')}
-                    >
-                      accept
-                    </button>
-                  </div>
-                </div>
-              )}
-              
-              {requestInfo.status === 'approved' && (
-                <div className="borrow-request approved">
-                  <h2>You've Lent Nicole</h2>
-                  <img src={requestInfo.itemImage} alt={requestInfo.itemName} className="item-image" />
-                  <p className="date-range">{requestInfo.dateRange}</p>
-                </div>
-              )}
-            </>
-          )}
-        </div>
+        <BorrowRequest requestInfo={requestInfo} handleAction={handleAction} />
         
-        {/* The Chat Messages Themselves */}
         {messages.map(message => (
           <div 
             key={message.id} 
@@ -104,8 +66,7 @@ export default function Conversation({ conversationId }) {
           </div>
         ))}
       </div>
-      
-      {/* Message Input - how to get a keyboard here???? wait lol does it do that automatically? */}
+
       <div className="message-input-container">
         <form onSubmit={handleSendMessage}>
           <input
