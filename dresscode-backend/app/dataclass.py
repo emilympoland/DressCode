@@ -24,6 +24,15 @@ class ClothingItem:
     tags: List[str]
     season: Weather
     status: str = "active"  # Default status
+    description: str = ""
+
+    def __init__(self, id: int, image_url: str, tags: List[str], season: Weather, status: str = "active", description: str = ""):
+        self.id = id
+        self.image_url = image_url
+        self.tags = tags
+        self.season = season
+        self.status = status
+        self.description = description
 
 
 @dataclass
@@ -33,4 +42,8 @@ class UserData:
     profile_pic_url: str
     wardrobe: dict[int, ClothingItem]
 
-
+    def __init__(self, username: str, password: str, profile_pic_url: str = "", wardrobe: dict[int, ClothingItem] = {}):
+        self.username = username
+        self.password = password
+        self.profile_pic_url = profile_pic_url
+        self.wardrobe = wardrobe if wardrobe is not None else {}

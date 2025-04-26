@@ -1,16 +1,50 @@
-from app.dataclass import UserData, ClothingItem
+from app.dataclass import UserData, ClothingItem, Weather
+from app.core.config import openai_api_key
 from typing import Dict, List, Optional
+
+import base64
+import openai
 
 # In-memory storage for next item ID
 next_item_id = 1
+
+def encode_image(image_path: str) -> str:
+    with open(image_path, "rb") as image_file:
+        return base64.b64encode(image_file.read()).decode("utf-8")
 
 def get_closet_items(user: UserData) -> List[ClothingItem]:
     """Get all items in a user's closet."""
     return list(user.wardrobe.values())
 
-def add_closet_item(user: UserData, image_url: str, tags: List[str], season: Optional[str]) -> ClothingItem:
+def add_closet_item(user: UserData, image_url: str, tags: List[str], season: Optional[Weather]) -> ClothingItem | None:
     """Add a new item to the user's closet."""
     global next_item_id
+    
+    base64_image = encode_image(image_url)
+    client = openai.OpenAI(api_key=openai_api_key)
+
+    completion = client.chat.completions.create(
+        model="gpt-4.1",
+        messages=[
+            {
+                "role": "user",
+                "content": [
+                    { "type": "text", "text": "Describe this piece of clothing in less than 100 words. Focus on the type of clothing as well as clothing style and what kind of vibe the item gives. Also, mention what kind of weather this clothing would be good in." },
+                    {
+                        "type": "image_url",
+                        "image_url": {
+                            "url": f"data:image/jpeg;base64,{base64_image}",
+                        },
+                    },
+                ],
+            }
+        ],
+    )
+
+    response = completion.choices[0].message.content
+
+    if not season or not response:
+        return None
     
     # Create new item
     item = ClothingItem(
@@ -18,7 +52,8 @@ def add_closet_item(user: UserData, image_url: str, tags: List[str], season: Opt
         image_url=image_url,
         tags=tags,
         season=season,
-        status="active"
+        status="active",
+        description=response
     )
     
     # Add to user's wardrobe
