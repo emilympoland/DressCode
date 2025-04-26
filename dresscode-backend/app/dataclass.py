@@ -23,6 +23,7 @@ class ClothingItem:
     image_url: str
     tags: List[str]
     season: Weather
+    status: str = "active"  # Default status
 
 
 @dataclass
