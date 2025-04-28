@@ -1,6 +1,6 @@
 from fastapi import APIRouter, Depends
 
-from app.services.closet_service import get_closet_items
+from app.services.closet_service import get_closet_items, get_closet_item
 from app.core.auth import get_current_user_from_token
 from app.core.config import openai_api_key
 from app.dataclass import UserData
@@ -43,7 +43,7 @@ descriptions.
         return
     
     item_ids = response.split(",")
-    items = [user.wardrobe[int(id)] for id in item_ids]
+    items = [get_closet_item(int(id)) for id in item_ids]
 
     return [
         {

@@ -1,5 +1,6 @@
 from fastapi import APIRouter, UploadFile, File, Form, HTTPException, Request, Depends
 from typing import Optional, Dict, List
+from dataclasses import asdict
 from datetime import datetime
 import os
 from app.dataclass import ClothingItem, Weather, UserData
@@ -26,7 +27,10 @@ async def upload_clothing_item(
 
     # Create and add clothing item
     clothing_item = add_closet_item(user, image_url, tag_list, season)
-    return clothing_item
+    if not clothing_item:
+        return
+    
+    return asdict(clothing_item)
 
 @router.get("/api/closet")
 async def get_closet(user: UserData = Depends(get_current_user_from_token)) -> List[Dict]:

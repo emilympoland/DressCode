@@ -3,7 +3,6 @@ from app.dataclass import UserCreate, UserData
 from app.services.user_service import user_create, get_all_users, verify_user  # Removed get_current_user alias
 from app.core.auth import create_access_token, get_current_user_from_token
 from typing import Dict, List
-import json
 
 router = APIRouter()
 
@@ -32,9 +31,7 @@ def list_users() -> List[Dict]:
 
 @router.post("/api/login")
 async def login(data: UserCreate) -> Dict:
-    print("logging in")
     try:
-        print("hi")
         if not data.username or not data.password:
             raise HTTPException(status_code=400, detail="Username and password are required")
         
@@ -42,10 +39,8 @@ async def login(data: UserCreate) -> Dict:
         print(user)
         if not user:
             raise HTTPException(status_code=401, detail="Invalid username or password")
-        print("hi")
         # Create a token with the username as subject
         token = create_access_token({"sub": user.username})
-        print("hi")
         return {
             "access_token": token,
             "token_type": "bearer"
