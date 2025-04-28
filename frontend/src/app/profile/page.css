@@ -3,6 +3,10 @@
     flex-direction: row;
     gap: 30px;
     padding: 30px;
+    color: black;
+}
+h2 {
+    color: black;
 }
 
 #profile_picture {
@@ -11,8 +15,140 @@
 
 }
 
+.popup-button {
+    border-radius: 30px;
+    padding: 10px;
+    margin: 5px;
+    padding-left: 40px;
+    padding-right: 40px;
+    background-color: #EF6A3F;
+
+}
+
 button {
     border-radius: 20px;
     padding: 20px;
     margin: 10px;
+    background-color: #96A8FD;
 }
+#myCloset {
+    background-color: #EF6A3F;
+}
+
+#savedOutfits {
+    background-color: #EF6A3F;
+}
+.tabButton {
+    padding: 10px 30px;
+    padding-bottom: 0px;
+    
+    color: black;
+    cursor: pointer;
+    font-size: 16px;
+    border-radius: 10px 10px 0px 0px;
+    margin: 3px;
+    margin-bottom: 0px;
+    
+    transition: background-color 0.3s ease;
+  }
+  
+  .tabButton:hover {
+    background-color: rgb(216, 216, 216);
+    color: black;
+  }
+  
+  .activeTab {
+    background-color: #EF6A3F; 
+    color: #D9F855;
+    font-weight: bold;
+  }
+
+  #myClosetitems {
+    display: grid;
+    background-color: #EF6A3F;
+    grid-template-columns: repeat(auto-fill, minmax(100px, 2fr));
+    gap: 16px;
+    padding: 20px;
+  }
+  #myClosetitems img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    object-fit: cover;
+  }
+
+  #buttons-area {
+    position: fixed;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    bottom: 80px;
+    left: 0;
+    width: 100%;
+  }
+
+  .actions {
+    position: fixed;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    bottom: 250px;
+    left: 100px;
+    
+
+  }
+  .action-buttons {
+    background-color: #F9F4E7;
+    color:#EF6A3F;
+    border-radius: 30px;
+    padding: 10px;
+    margin: 5px;
+    padding-left: 40px;
+    padding-right: 40px;
+    font-weight: bold;
+
+  }
+
+  .tabContent {
+    min-height: 100vh;
+    flex-grow: 1; 
+    background-color: #EF6A3F;
+
+  }
+
+  #saved-outfits-container {
+    margin-bottom: 20px;
+    padding: 10px;
+    border-radius: 10px;
+  }
+
+  #saved-outfit-item {
+    display: flex;
+    flex-direction: row;
+  }
+
+  #saved-item {
+    width: 100px;
+    height: 100px;
+    margin: 5px;
+  }
+
+  .item-object {
+    width: 150px;
+    height:  150px; 
+    display: flex;
+    object-fit: cover;
+  }
+  .item-popup {
+    width: 250px; 
+    height: 250px; 
+    object-fit: cover; 
+    margin-top: 50px; 
+    margin-bottom: 20px;
+  }
+  .header {
+    color:black; 
+    display: flex; 
+    justify-content: center;
+    font-weight: bold;
+  }
