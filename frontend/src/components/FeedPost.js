@@ -5,8 +5,12 @@ export default function FeedPost({ post, onItemClick }) {
   return (
     <div className="post-container">
       <div className="post-header">
-        <div className="user-avatar"></div>
+        <img src="anonymous_profile.png" id="user-avatar" />
         <div className="username">@{post.username}</div>
+      </div>
+
+      <div className="caption">
+        {post.caption}
       </div>
       
       <div className={`items-container ${post.isOutfit ? 'outfit-layout' : 'single-item'}`}>
@@ -22,15 +26,12 @@ export default function FeedPost({ post, onItemClick }) {
               className="item-request-button"
               onClick={() => onItemClick(item)}
             >
-              REQUEST TO BORROW
+              BORROW
             </button>
           </div>
         ))}
       </div>
       
-      <div className="caption">
-        {post.caption}
-      </div>
     </div>
   );
 }

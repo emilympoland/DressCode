@@ -9,7 +9,7 @@ export default function MessagePreview({ name, time, message, id }) {
         <Link href={`/messages/${id}`} style={{ textDecoration: 'none', color: 'inherit', display: 'block' }}>
         <div className="message-preview-container">
             <div className="message-content">
-                <div className="message-preview-avatar"></div>
+                <img src="anonymous_profile.png" id="message-preview-avatar" />
                 <div className="text-content">
                 <p className="message-preview-name">{name}</p>
                 <p className="message-preview-message">{message}</p>

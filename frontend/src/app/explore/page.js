@@ -126,17 +126,18 @@ export default function Explore() {
       )}
       
       {view === 'requestSent' && (
-        <div className="feed-container">
-          <div style={{ textAlign: 'center', padding: '40px 20px' }}>
-            <h2>Request Sent!</h2>
-            <p>Your borrow request for "{selectedItem?.name}" has been sent to the owner.</p>
-            <button 
-              className="borrow-button" 
-              style={{ maxWidth: '200px', marginTop: '20px' }}
-              onClick={handleBack}
-            >
-              Back to Feed
-            </button>
+        <div className="flex items-center justify-center min-h-screen -mt-8">
+          <div className="feed-container">
+            <div className="text-center px-5 py-10">
+              <h2>Request Sent!</h2>
+              <p>Your borrow request for {selectedItem?.name} has been sent to the owner.</p>
+              <button 
+                className="borrow-button mx-auto max-w-[200px] px-8"
+                onClick={handleBack}
+              >
+                Back to Feed
+              </button>
+            </div>
           </div>
         </div>
       )}

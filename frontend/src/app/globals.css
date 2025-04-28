@@ -47,11 +47,7 @@ a {
 /* styling for home page */
 
 /* styling for friends feed page */
-/* Feed styles
 
-/* Feed post styling */
-
-/* Add a class for the "REQUEST TO BORROW" button */
 .request-borrow-button {
   background-color: #96A8FD;
   color: #F9F4E7;
@@ -73,6 +69,7 @@ a {
   padding: 15px;
   margin-bottom: 15px;
   color: #F9F4E7;
+  width: 95%;
 }
 
 .post-header {
@@ -81,7 +78,7 @@ a {
   margin-bottom: 10px;
 }
 
-.user-avatar {
+#user-avatar {
   width: 40px;
   height: 40px;
   border-radius: 50%;
@@ -95,8 +92,10 @@ a {
 }
 
 .caption {
-  margin: 10px 0;
+  margin-left: 50px;
   font-size: 14px;
+  font-weight: bold;
+  color: #F9F4E7;
 }
 
 .items-container {
@@ -107,6 +106,13 @@ a {
 .outfit-layout {
   grid-template-columns: repeat(3, 1fr);
   gap: 5px;
+  aspect-ratio: 1;
+}
+
+.outfit-layout img {
+  width: 100%;
+  aspect-ratio: 1/1; /* Creates a square aspect ratio */
+  object-fit: cover; /* Maintains aspect ratio while filling the container */
 }
 
 .single-item {
@@ -138,7 +144,7 @@ a {
 
 .item-request-button {
   background-color: #96A8FD;
-  color: #F9F4E7;
+  color: #D9F855;
   border: none;
   padding: 4px 8px;
   border-radius: 20px;
@@ -146,7 +152,7 @@ a {
   font-weight: bold;
   cursor: pointer;
   text-transform: uppercase;
-  font-size: 8px;
+  font-size: 12px;
   margin-top: 3px;
 }
 
@@ -232,27 +238,6 @@ a {
   margin-right: 10px;
 }
 
-/* styling for profile page */
-
-.caption {
-  margin: 10px 0;
-  font-size: 0.9em;
-}
-
-.user-info {
-  display: flex;
-  align-items: center;
-  margin-bottom: 10px;
-}
-
-.avatar {
-  width: 30px;
-  height: 30px;
-  border-radius: 50%;
-  background-color: #F9F4E7;
-  margin-right: 10px;
-}
-
 .feed-page-title {
   font-size: 24px;
   padding: 20px;
@@ -264,6 +249,9 @@ a {
   padding: 0 10px;
   max-width: 600px;
   margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .feed-item {
@@ -303,10 +291,6 @@ a {
   cursor: pointer;
 }
 
-.caption {
-  margin: 10px 0;
-}
-
 .borrow-button {
   background-color: #96A8FD;
   color: #D9F855;
@@ -325,8 +309,6 @@ a {
   padding: 15px;
   color: #D9F855;
   max-width: 350px;
-  margin: 0 auto;
-  margin-top: 50px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -335,7 +317,6 @@ a {
 }
 
 .detail-header {
-  margin-top: 0;
   font-size: 24px;
   font-weight: bold;
   color: #D9F855;
@@ -343,14 +324,14 @@ a {
 
 .detail-image {
   width: 100%;
+  margin-top: 10px;
+  margin-bottom: 10px;
   aspect-ratio: 1;
   object-fit: cover;
   border-radius: 10px;
-  margin-bottom: 15px;
 }
 
 .categories {
-  margin: 15px 0;
   font-size: 16px;
 }
 
@@ -359,7 +340,7 @@ a {
   justify-content: space-between;
 }
 
-.back-button {
+.expanded-borrow-button {
   background-color: #96A8FD;
   color: #F9F4E7 ;
   border: none;
@@ -369,6 +350,22 @@ a {
   cursor: pointer;
   margin: 10px;
   font-size: 16px;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.back-button {
+  background-color: #F9F4E7;
+  color: #96A8FD ;
+  border: none;
+  padding: 8px;
+  border-radius: 20px;
+  font-weight: bold;
+  cursor: pointer;
+  margin: 10px;
+  font-size: 16px;
+  padding-left: 20px;
+  padding-right: 20px;
 }
 
 /* date selector styling */
@@ -523,7 +520,7 @@ a {
   align-self: flex-start;
 }
 
-.message-preview-avatar {
+#message-preview-avatar {
   width: 50px;
   height: 50px;
   background-color: #ccc;
@@ -561,7 +558,7 @@ a {
   color: #96A8FD;
 }
 
-.conversation-header-avatar {
+#conversation-header-avatar {
   width: 40px;
   height: 40px;
   background-color: #ccc;
@@ -578,7 +575,6 @@ a {
   overflow: hidden; 
 }
 
-/* Fixed input container, placed above the navbar */
 .message-input-container {
   position: fixed;
   bottom: 60px;  /* moved up to account for the navbar height */
