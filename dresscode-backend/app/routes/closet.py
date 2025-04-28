@@ -1,9 +1,9 @@
-from fastapi import APIRouter, UploadFile, File, Form, HTTPException, Request
+from fastapi import APIRouter, UploadFile, File, Form, HTTPException, Request, Depends
 from typing import Optional, Dict, List
 from datetime import datetime
 import os
-from app.dataclass import ClothingItem, Weather
-from app.services.user_service import get_current_user
+from app.dataclass import ClothingItem, Weather, UserData
+from app.core.auth import get_current_user_from_token
 from app.services.closet_service import get_closet_items, update_closet_item, delete_closet_item, add_closet_item
 
 router = APIRouter()
@@ -13,15 +13,10 @@ async def upload_clothing_item(
     image: UploadFile = File(...),
     tags: Optional[str] = Form(None),
     season: Optional[Weather] = Form(None),
-    user_id: int = Form(...)
+    user: UserData = Depends(get_current_user_from_token)
 ):
-    # Verify user exists
-    user = get_current_user()
-    if not user:
-        raise HTTPException(status_code=401, detail="Not logged in")
-
     # Save image to storage
-    image_url = f"uploads/{user_id}/{datetime.now().isoformat()}_{image.filename}"
+    image_url = f"uploads/{user.username}/{datetime.now().isoformat()}_{image.filename}"
     os.makedirs(os.path.dirname(image_url), exist_ok=True)
     with open(image_url, "wb") as f:
         f.write(await image.read())
@@ -34,11 +29,7 @@ async def upload_clothing_item(
     return clothing_item
 
 @router.get("/api/closet")
-async def get_closet() -> List[Dict]:
-    user = get_current_user()
-    if not user:
-        raise HTTPException(status_code=401, detail="Not logged in")
-    
+async def get_closet(user: UserData = Depends(get_current_user_from_token)) -> List[Dict]:
     items = get_closet_items(user)
     return [
         {
@@ -51,11 +42,7 @@ async def get_closet() -> List[Dict]:
     ]
 
 @router.put("/api/closet/item/{item_id}")
-async def update_item(item_id: int, request: Request) -> Dict:
-    user = get_current_user()
-    if not user:
-        raise HTTPException(status_code=401, detail="Not logged in")
-    
+async def update_item(item_id: int, request: Request, user: UserData = Depends(get_current_user_from_token)) -> Dict:
     try:
         data = await request.json()
         updated_item = update_closet_item(user, item_id, data)
@@ -66,14 +53,10 @@ async def update_item(item_id: int, request: Request) -> Dict:
         raise HTTPException(status_code=500, detail="Failed to update item")
 
 @router.delete("/api/closet/item/{item_id}", status_code=204)
-async def delete_item(item_id: int) -> None:
-    user = get_current_user()
-    if not user:
-        raise HTTPException(status_code=401, detail="Not logged in")
-    
+async def delete_item(item_id: int, user: UserData = Depends(get_current_user_from_token)) -> None:
     try:
         delete_closet_item(user, item_id)
     except ValueError as e:
         raise HTTPException(status_code=400, detail=str(e))
     except Exception as e:
-        raise HTTPException(status_code=500, detail="Failed to delete item") 
+        raise HTTPException(status_code=500, detail="Failed to delete item")

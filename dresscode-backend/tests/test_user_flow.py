@@ -13,6 +13,9 @@ def test_user_flow():
     response = requests.post(f"{BASE_URL}/api/register", json=user1_data)
     assert response.status_code == 200
     print("\n1. Registered first user:", response.json())
+    login_data = response.json()
+    token = login_data["access_token"]
+    headers1 = {"Authorization": f"Bearer {token}"}
 
     # 2. Register second user
     user2_data = {
@@ -22,6 +25,9 @@ def test_user_flow():
     response = requests.post(f"{BASE_URL}/api/register", json=user2_data)
     assert response.status_code == 200
     print("\n2. Registered second user:", response.json())
+    login_data = response.json()
+    token = login_data["access_token"]
+    headers2 = {"Authorization": f"Bearer {token}"}
 
     # 3. Check all users
     response = requests.get(f"{BASE_URL}/api/users")

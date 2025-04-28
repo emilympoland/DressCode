@@ -1,7 +1,7 @@
 from typing import Union
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from app.routes import login, closet
+from app.routes import login, closet, outfit
 
 app = FastAPI()
 
@@ -17,6 +17,7 @@ app.add_middleware(
 # Include routers
 app.include_router(login.router)
 app.include_router(closet.router)
+app.include_router(outfit.router)
 
 @app.get("/")
 def read_root():

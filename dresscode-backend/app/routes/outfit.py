@@ -1,8 +1,9 @@
-from fastapi import APIRouter
+from fastapi import APIRouter, Depends
 
 from app.services.closet_service import get_closet_items
-from app.services.user_service import get_current_user
+from app.core.auth import get_current_user_from_token
 from app.core.config import openai_api_key
+from app.dataclass import UserData
 
 import openai
 
@@ -10,13 +11,12 @@ client = openai.OpenAI(api_key=openai_api_key)
 router = APIRouter()
 
 
-@router.post("/api/outfit/generate")
-async def generate_outfit():
-    user = get_current_user()
-    if not user:
-        return
-    
+@router.get("/api/outfit/generate")
+async def generate_outfit(user: UserData = Depends(get_current_user_from_token)):
     clothes = get_closet_items(user)
+
+    if not clothes:
+        return
 
     clothing_table = [f"{item.id}: {item.description}" for item in clothes]
     clothing = "\n".join(clothing_table)

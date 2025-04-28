@@ -1,30 +1,23 @@
-from fastapi import APIRouter, HTTPException, Request
+from fastapi import APIRouter, HTTPException, Request, Depends
 from app.dataclass import UserCreate, UserData
-from app.services.user_service import user_create, get_all_users, verify_user, get_current_user as get_logged_in_user
+from app.services.user_service import user_create, get_all_users, verify_user  # Removed get_current_user alias
+from app.core.auth import create_access_token, get_current_user_from_token
 from typing import Dict, List
 import json
 
 router = APIRouter()
 
 @router.post("/api/register")
-async def create_user(request: Request) -> Dict:
+async def create_user(user: UserCreate) -> Dict:
     try:
-        data = json.loads(await request.body())
-        user = UserCreate(**data)
         user_data = user_create(user)
-        
-        return {
-            "username": user_data.username,
-            "profile_pic_url": user_data.profile_pic_url,
-            "wardrobe": {}
-        }
-    except json.JSONDecodeError:
-        raise HTTPException(status_code=400, detail="Invalid JSON")
+        return await login(user)
+    
     except ValueError as e:
         raise HTTPException(status_code=400, detail=str(e))
     except Exception as e:
         raise HTTPException(status_code=500, detail="Failed to create user")
-
+    
 @router.get("/api/users")
 def list_users() -> List[Dict]:
     users = get_all_users()
@@ -38,41 +31,32 @@ def list_users() -> List[Dict]:
     ]
 
 @router.post("/api/login")
-async def login(request: Request) -> Dict:
+async def login(data: UserCreate) -> Dict:
+    print("logging in")
     try:
-        data = json.loads(await request.body())
-        
-        if "username" not in data or "password" not in data:
+        print("hi")
+        if not data.username or not data.password:
             raise HTTPException(status_code=400, detail="Username and password are required")
         
-        user = verify_user(data["username"], data["password"])
+        user = verify_user(data.username, data.password)
+        print(user)
         if not user:
             raise HTTPException(status_code=401, detail="Invalid username or password")
-        
+        print("hi")
+        # Create a token with the username as subject
+        token = create_access_token({"sub": user.username})
+        print("hi")
         return {
-            "username": user.username,
-            "profile_pic_url": user.profile_pic_url,
-            "wardrobe_size": len(user.wardrobe)
+            "access_token": token,
+            "token_type": "bearer"
         }
-    except json.JSONDecodeError:
-        raise HTTPException(status_code=400, detail="Invalid JSON")
-    except HTTPException:
-        raise
+
     except Exception as e:
         raise HTTPException(status_code=500, detail="Login failed")
 
 @router.get("/api/user/me")
-async def get_current_user() -> Dict:
-    try:
-        user = get_logged_in_user()
-        if not user:
-            raise HTTPException(status_code=401, detail="Not logged in")
-        
-        return {
-            "username": user.username,
-            "closet": user.wardrobe
-        }
-    except HTTPException:
-        raise
-    except Exception as e:
-        raise HTTPException(status_code=500, detail="Failed to get user info")
+async def get_current_user(user: UserData = Depends(get_current_user_from_token)) -> Dict:
+    return {
+        "username": user.username,
+        "closet": user.wardrobe
+    }
