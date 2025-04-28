@@ -1,5 +1,5 @@
 from pydantic import BaseModel
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from typing import List, Optional
 from enum import Enum
 
@@ -44,13 +44,15 @@ class BorrowRequest:
     borrower_username: str
     duration: int
     id: int = 0
+    item_image_url = ""
 
-    def __init__(self, item_id: int, borrowee_username: str, borrower_username: str, duration: int, id: int = 0):
+    def __init__(self, item_id: int, borrowee_username: str, borrower_username: str, duration: int, id: int = 0, item_image_url = ""):
         self.item_id = item_id
         self.borrowee_username = borrowee_username
         self.borrower_username = borrower_username
         self.duration = duration
         self.id = id
+        self.item_image_url = item_image_url
 
 
 @dataclass
@@ -58,8 +60,8 @@ class UserData:
     username: str
     password: str
     profile_pic_url: str
-    wardrobe: List[int] = []
-    requests: List[int] = []
+    wardrobe: List[int] = field(default_factory=list)
+    requests: List[int] = field(default_factory=list)
 
 
     def __init__(self, username: str, password: str, profile_pic_url: str = "", wardrobe: List[int] = [], requests: List[int] = []):
@@ -84,3 +86,16 @@ class Post:
         self.caption = caption
         self.outfit_item_ids = outfit_item_ids
         self.profile_pic_url = profile_pic_url
+
+
+@dataclass
+class Challenge:
+    tops: List[ClothingItem]
+    bottoms: List[ClothingItem]
+    shoes: List[ClothingItem]
+
+
+    def __init__(self, tops: List[ClothingItem], bottoms: List[ClothingItem], shoes: List[ClothingItem]):
+        self.tops = tops
+        self.bottoms = bottoms
+        self.shoes = shoes

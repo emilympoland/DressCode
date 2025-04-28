@@ -32,7 +32,7 @@ async def get_incoming_requests(user: UserData = Depends(get_current_user_from_t
         raise HTTPException(status_code=401, detail="Invalid authentication credentials")
     
     request_list = get_borrow_requests(user)
-    return [{"request_id": request.id, "borrower": request.borrower_username, "item": asdict(get_closet_item(request.item_id))} for request in request_list]
+    return [asdict(request) for request in request_list]
 
 
 @router.post("/api/borrow/respond")

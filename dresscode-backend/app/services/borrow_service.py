@@ -1,5 +1,5 @@
 from app.dataclass import BorrowRequest, UserData
-from app.services.closet_service import add_borrowed_item
+from app.services.closet_service import add_borrowed_item, get_closet_item
 from app.services.user_service import get_user_by_username
 from typing import Dict, List
 
@@ -13,6 +13,8 @@ def add_borrow_request(request: BorrowRequest, user: UserData) -> int:
     requests[curr_id] = request
     request.id = curr_id
     user.requests.append(curr_id)
+    item = get_closet_item(request.item_id)
+    request.item_image_url = item.image_url
     curr_id += 1
 
     return curr_id - 1
