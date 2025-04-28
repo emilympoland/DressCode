@@ -28,7 +28,7 @@ export default function ConversationPage() {
   return (
     <div className="conversation-page">
       <header className="conversation-header">
-        <div className="avatar"></div>
+        <img src="../anonymous_profile.png" id="conversation-header-avatar"/>
         <h1>{userName}</h1>
       </header>
       

@@ -12,7 +12,7 @@ export default function BorrowRequest({ requestInfo, handleAction }) {
       {requestInfo.status === 'pending' && (
         <div className="borrow-request pending">
           <h2>Requests to Borrow</h2>
-          <img src={requestInfo.itemImage} alt={requestInfo.itemName} className="item-image" />
+          <img src='/Mock Clothes/shoe1.jpg' alt={requestInfo.itemName} className="item-image" />
           <p className="date-range">{requestInfo.dateRange}</p>
           <div className="action-buttons">
             <button 
@@ -34,7 +34,7 @@ export default function BorrowRequest({ requestInfo, handleAction }) {
       {requestInfo.status === 'approved' && (
         <div className="borrow-request approved">
           <h2>You've Lent Nicole</h2>
-          <img src={requestInfo.itemImage} alt={requestInfo.itemName} className="item-image" />
+          <img src='/Mock Clothes/shoe1.jpg' alt={requestInfo.itemName} className="item-image" /> 
           <p className="date-range">{requestInfo.dateRange}</p>
         </div>
       )}
