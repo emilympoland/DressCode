@@ -39,7 +39,7 @@ export default function Profile() {
       }
     }
   }
-  const handleFilter = (item) => {
+  const handleFilter = () => {
     if (filterCategory) {
       setCurrClosetItems(allClosetItems.filter(item => item.type === filterCategory));
     } else {
@@ -90,6 +90,8 @@ export default function Profile() {
         </div>
 
         <div className="tabContent">
+
+          {/* //saved outfits tab */}
         {activeTab === 'savedOutfits' && (
             <div id="savedOutfits">
               {savedOutfits.map((outfit) => (
@@ -103,7 +105,7 @@ export default function Profile() {
               ))}
             </div>
           )}
-
+          {/* my closet tab */}
           {activeTab === 'myCloset' && (
             <div id="myClosetitems">
               {currClosetItems.map((item, index) => (
@@ -165,7 +167,7 @@ export default function Profile() {
                   </div>
                   <div className="actions">
                     <button className="action-buttons" onClick={() => {
-                      handleFilter(item);
+                      handleFilter();
                       close();
                     }}>Apply Filter</button>
                     <button className="action-buttons" onClick={() => {

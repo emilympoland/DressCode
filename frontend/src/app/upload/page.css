@@ -1,0 +1,12 @@
+#upload-container {
+    color: black;
+}
+
+#upload-button {
+    border-radius: 30px;
+    padding: 10px;
+    margin: 5px;
+    padding-left: 40px;
+    padding-right: 40px;
+    background-color: #EF6A3F;
+}
