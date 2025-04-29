@@ -17,9 +17,9 @@ export default function Explore() {
       caption: 'Some of my favorite pieces this season!',
       isOutfit: true, // This is an outfit post with multiple items
       items: [
-        { id: 'top1', image: '/Mock Clothes/top1.jpg', name: 'White Button Shirt', category: 'Tops' },
-        { id: 'bottom2', image: '/Mock Clothes/pants2.jpg', name: 'Black Jeans', category: 'Bottoms' },
-        { id: 'shoe3', image: '/Mock Clothes/shoe3.jpg', name: 'Ankle Boots', category: 'Shoes' }
+        { id: 'top1', image: 'Clothes/top1.jpg', name: 'White Button Shirt', category: 'Tops' },
+        { id: 'bottom2', image: 'Clothes/pants2.jpg', name: 'Black Jeans', category: 'Bottoms' },
+        { id: 'shoe3', image: 'Clothes/shoe3.jpg', name: 'Ankle Boots', category: 'Shoes' }
       ]
     },
     {
@@ -29,7 +29,7 @@ export default function Explore() {
       caption: 'My new favorite shirt!',
       isOutfit: false, // This is a single item post
       items: [
-        { id: 'top2', image: '/Mock Clothes/top2.jpg', name: 'Blue Sweater', category: 'Tops' }
+        { id: 'top2', image: 'Clothes/top2.jpg', name: 'Blue Sweater', category: 'Tops' }
       ]
     },
     {
@@ -39,9 +39,9 @@ export default function Explore() {
       caption: 'Perfect combo for fall weather.',
       isOutfit: true,
       items: [
-        { id: 'top3', image: '/Mock Clothes/top3.jpg', name: 'Striped Tee', category: 'Tops' },
-        { id: 'bottom1', image: '/Mock Clothes/pants1.jpg', name: 'Denim Jeans', category: 'Bottoms' },
-        { id: 'shoe1', image: '/Mock Clothes/shoe1.jpg', name: 'Casual Sneakers', category: 'Shoes' }
+        { id: 'top3', image: 'Clothes/top3.jpg', name: 'Striped Tee', category: 'Tops' },
+        { id: 'bottom1', image: 'Clothes/pants1.jpg', name: 'Denim Jeans', category: 'Bottoms' },
+        { id: 'shoe1', image: 'Clothes/shoe1.jpg', name: 'Casual Sneakers', category: 'Shoes' }
       ]
     }
   ];
