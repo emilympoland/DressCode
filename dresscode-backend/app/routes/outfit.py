@@ -1,4 +1,5 @@
 from fastapi import APIRouter, Depends
+from dataclasses import asdict
 
 from app.services.closet_service import get_closet_items, get_closet_item
 from app.core.auth import get_current_user_from_token
@@ -45,12 +46,4 @@ descriptions.
     item_ids = response.split(",")
     items = [get_closet_item(int(id)) for id in item_ids]
 
-    return [
-        {
-            "item_id": item.id,
-            "image_url": item.image_url,
-            "tags": item.tags,
-            "status": item.status
-        }
-        for item in items
-    ]
+    return [asdict(item)for item in items]

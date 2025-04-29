@@ -23,7 +23,7 @@ async def get_challenge(user: UserData = Depends(get_current_user_from_token)):
     if top1 == None or top2 == None or bottom1 == None or bottom2 == None or shoe1 == None or shoe2 == None:
         return
 
-    challenge = Challenge([top1, top2], [bottom1, bottom2], [shoe1, shoe2])
+    challenge = Challenge([top1, top2], [bottom1, bottom2], [shoe1, shoe2], "Try monochrome outfits today!")
     return asdict(challenge)
 
 @router.post("/api/challenge/submit")

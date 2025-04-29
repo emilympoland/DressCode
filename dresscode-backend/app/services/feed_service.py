@@ -11,5 +11,5 @@ feed: Deque[Post] = deque()
 def add_post(post: Post):
     feed.appendleft(post)
 
-def get_feed():
-    return [asdict(post) for post in feed]
+def get_feed() -> List[Post]:
+    return list(feed)

@@ -52,6 +52,5 @@ async def login(data: UserCreate) -> Dict:
 @router.get("/api/user/me")
 async def get_current_user(user: UserData = Depends(get_current_user_from_token)) -> Dict:
     return {
-        "username": user.username,
-        "closet": user.wardrobe
+        "username": user.username
     }

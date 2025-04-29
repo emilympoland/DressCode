@@ -35,15 +35,7 @@ async def upload_clothing_item(
 @router.get("/api/closet")
 async def get_closet(user: UserData = Depends(get_current_user_from_token)) -> List[Dict]:
     items = get_closet_items(user)
-    return [
-        {
-            "item_id": item.id,
-            "image_url": item.image_url,
-            "tags": item.tags,
-            "status": item.status
-        }
-        for item in items
-    ]
+    return [asdict(item)for item in items]
 
 @router.put("/api/closet/item/{item_id}")
 async def update_item(item_id: int, request: Request, user: UserData = Depends(get_current_user_from_token)) -> Dict:

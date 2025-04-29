@@ -93,9 +93,11 @@ class Challenge:
     tops: List[ClothingItem]
     bottoms: List[ClothingItem]
     shoes: List[ClothingItem]
+    prompt: str
 
 
-    def __init__(self, tops: List[ClothingItem], bottoms: List[ClothingItem], shoes: List[ClothingItem]):
+    def __init__(self, tops: List[ClothingItem], bottoms: List[ClothingItem], shoes: List[ClothingItem], prompt: str):
         self.tops = tops
         self.bottoms = bottoms
         self.shoes = shoes
+        self.prompt = prompt
