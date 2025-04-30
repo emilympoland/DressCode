@@ -5,7 +5,7 @@ from datetime import datetime
 import os
 from app.dataclass import ClothingItem, Weather, UserData
 from app.core.auth import get_current_user_from_token
-from app.services.closet_service import get_closet_items, update_closet_item, delete_closet_item, add_closet_item
+from app.services.closet_service import get_closet_items, update_closet_item, delete_closet_item, add_closet_item, get_closet_item
 
 router = APIRouter()
 
@@ -36,6 +36,13 @@ async def upload_clothing_item(
 async def get_closet(user: UserData = Depends(get_current_user_from_token)) -> List[Dict]:
     items = get_closet_items(user)
     return [asdict(item)for item in items]
+
+@router.get("api/closet/item/{item_id}")
+async def get_item(item_id: int, user: UserData = Depends(get_current_user_from_token)):
+    if item_id not in user.wardrobe:
+        raise HTTPException(status_code=500, detail="Item not in wardrobe")
+    
+    return asdict(get_closet_item(item_id))
 
 @router.put("/api/closet/item/{item_id}")
 async def update_item(item_id: int, request: Request, user: UserData = Depends(get_current_user_from_token)) -> Dict:
