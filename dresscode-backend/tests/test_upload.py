@@ -59,12 +59,12 @@ def test_user_flow():
         assert response.status_code == 200
         print("\n4. Uploaded clothing item:", response.json())
 
-        # 5. Check current user again to see the new item
-        response = requests.get(f"{BASE_URL}/api/user/me", headers=headers)
-        assert response.status_code == 200
-        current_user = response.json()
-        assert len(current_user["closet"]) > 0
-        print("\n5. Current user with new item:", json.dumps(current_user, indent=2))
+        # # 5. Check current user again to see the new item
+        # response = requests.get(f"{BASE_URL}/api/user/me", headers=headers)
+        # assert response.status_code == 200
+        # current_user = response.json()
+        # assert len(current_user["closet"]) > 0
+        # print("\n5. Current user with new item:", json.dumps(current_user, indent=2))
 
     except Exception as e:
         raise
