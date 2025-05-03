@@ -1,57 +1,101 @@
-// app/upload/page.js
 'use client';
 
 import './page.css';
-import axios from "axios";
 import React, { useState } from "react";
+import Popup from 'reactjs-popup';
+import 'reactjs-popup/dist/index.css';
 
 const Upload = () => {
-	const [selectedFile, setSelectedFile] = useState(null);
-	const onFileChange = (event) => {
-		setSelectedFile(event.target.files[0]);
-	};
-	const onFileUpload = () => {
-		const formData = new FormData();
-		formData.append(
-			"myFile",
-			selectedFile,
-			selectedFile.name
-		);
-		console.log(selectedFile);
-		axios.post("api/uploadfile", formData);
-	};
-	const fileData = () => {
-		if (selectedFile) {
-			return (
-				<div>
-					<h2>File Details:</h2>
-					<p>File Name: {selectedFile.name}</p>
-					<p>File Type: {selectedFile.type}</p>
-					<p>
-						Last Modified: {selectedFile.lastModifiedDate.toDateString()}
-					</p>
-				</div>
-			);
-		} else {
-			return (
-				<div>
-					<br />
-					<h4>Choose before Pressing the Upload button</h4>
-				</div>
-			);
-		}
-	};
+  const [imageUrl, setImageUrl] = useState("");
+  const [selectedFile, setSelectedFile] = useState(null);
+  const [fileHasSelected, setHasSelectedFile] = useState(false);
+  const [popupOpen, setPopupOpen] = useState(false);
+  const [previewSrc, setPreviewSrc] = useState("");
 
-	return (
-		<div id="upload-container">
-			<h1>Upload New Piece of Clothing</h1>
-			<div>
-				<input type="file" onChange={onFileChange} id="upload-button"/>
-				<button onClick={onFileUpload} id='upload-button'>Upload</button>
-			</div>
-			{fileData()}
-		</div>
-	);
+  const handleUpload = () => {
+    if (!fileHasSelected && !imageUrl) {
+      alert("Please upload file");
+      return;
+    }
+
+    if (fileHasSelected && !imageUrl) {
+      // Preview local file
+      const localUrl = URL.createObjectURL(selectedFile);
+      setPreviewSrc(localUrl);
+    } else {
+      // Preview external URL
+      setPreviewSrc(imageUrl);
+    }
+
+    setPopupOpen(true);
+  };
+
+  const onFileChange = (event) => {
+    setSelectedFile(event.target.files[0]);
+    setHasSelectedFile(true);
+  };
+
+  return (
+    <div id="upload-container">
+      <h1>Upload New Piece of Clothing</h1>
+
+      <div>
+        <input type="file" onChange={onFileChange} id="upload-button"/>
+      </div>
+
+      <div>
+        <input
+          type="text"
+          placeholder="Enter image URL"
+          value={imageUrl}
+          onChange={(e) => setImageUrl(e.target.value)}
+          id="upload-url-input"
+        />
+        <button id='upload-button' onClick={handleUpload}>Upload</button>
+      </div>
+
+      <Popup
+        open={popupOpen}
+        onClose={() => setPopupOpen(false)}
+        modal
+        contentStyle={{
+          backgroundColor: "#F9F4E7",
+          width: '350px',
+          height: '450px',
+          borderRadius: '30px',
+          padding: "30px"
+        }}
+      >
+        {close => (
+          <div className="modal">
+            <div className="content">
+              <p style={{ color: "black" }}>Image Preview</p>
+              <img
+                src={previewSrc}
+                alt="Preview"
+                style={{
+                  maxWidth: "100%",
+                  maxHeight: "300px",
+                  objectFit: "contain"
+                }}
+              />
+            </div>
+            <div className="actions">
+              <button className="action-buttons" onClick={() => {
+                setImageUrl("");
+                setSelectedFile(null);
+                setHasSelectedFile(false);
+                setPreviewSrc("");
+                close();
+              }}>Re-Upload</button>
+
+              <button className="action-buttons">Save</button>
+            </div>
+          </div>
+        )}
+      </Popup>
+    </div>
+  );
 };
 
 export default Upload;
