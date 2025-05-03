@@ -30,6 +30,8 @@ def user_create(user: UserCreate) -> UserData:
     db_user = UserData(
         username=user.username,
         password=user.password,
+        wardrobe=[],
+        requests=[],
         profile_pic_url="",
     )
     

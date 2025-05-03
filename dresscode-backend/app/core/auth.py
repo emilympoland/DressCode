@@ -17,18 +17,16 @@ def create_access_token(data: dict, expires_delta: Optional[timedelta] = None) -
     encoded_jwt = jwt.encode(to_encode, SECRET_KEY, algorithm=ALGORITHM)
     return encoded_jwt
 
-security = HTTPBearer()
+security = HTTPBearer(auto_error=False)
 
 def get_current_user_from_token(
     request: Request,
     credentials: Optional[HTTPAuthorizationCredentials] = Depends(security)
 ) -> UserData:
     token = None
-    # Prefer using the Bearer token header if present
     if credentials:
         token = credentials.credentials
     else:
-        # Otherwise try reading from the cookie
         token = request.cookies.get("access_token")
     
     if token is None:

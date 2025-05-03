@@ -1,4 +1,4 @@
-from app.dataclass import UserData, ClothingItem, Weather
+from app.dataclass import UserData, ClothingItem, Weather, ClothingType
 from app.core.config import openai_api_key
 from typing import Dict, List, Optional
 
@@ -20,11 +20,10 @@ def get_closet_items(user: UserData) -> List[ClothingItem]:
 def get_closet_item(item_id: int) -> ClothingItem:
     return items[item_id]
 
-def add_closet_item(user: UserData, image_url: str, tags: List[str], season: Optional[Weather]) -> ClothingItem | None:
+def add_closet_item(user: UserData, image_url: str, clothing_type: ClothingType, season: Optional[Weather]) -> ClothingItem | None:
     """Add a new item to the user's closet."""
     global next_item_id
     
-    base64_image = encode_image(image_url)
     client = openai.OpenAI(api_key=openai_api_key)
 
     completion = client.chat.completions.create(
@@ -37,7 +36,7 @@ def add_closet_item(user: UserData, image_url: str, tags: List[str], season: Opt
                     {
                         "type": "image_url",
                         "image_url": {
-                            "url": f"data:image/jpeg;base64,{base64_image}",
+                            "url": "https://i.pinimg.com/736x/fc/64/51/fc64518d5c694c622c954ce7ebc10041.jpg",
                         },
                     },
                 ],
@@ -54,7 +53,7 @@ def add_closet_item(user: UserData, image_url: str, tags: List[str], season: Opt
     item = ClothingItem(
         id=next_item_id,
         image_url=image_url,
-        tags=tags,
+        clothing_type=clothing_type,
         season=season,
         status="active",
         description=response

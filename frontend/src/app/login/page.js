@@ -1,22 +1,41 @@
-'use client';
+"use client";
 
-import React, { useState } from 'react';
-import { useRouter } from 'next/navigation'; // Note the change from 'next/router' to 'next/navigation'
-import Head from 'next/head';
+import React, { useState } from "react";
+import { useRouter } from "next/navigation";
+import Head from "next/head";
+
+const server_url = process.env.NEXT_PUBLIC_SERVER_URL;
 
 const Login = () => {
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
   const router = useRouter();
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    
-    // Simply log the attempt and redirect without any validation
-    console.log('Login attempt with:', { username, password });
-    
-    // Redirect to home page without any credential validation
-    router.push('/home'); // Redirects to home page for any credentials
+
+    console.log("Login attempt with:", { username, password });
+    fetch(`${server_url}/api/login`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      credentials: "include", // add this line
+      body: JSON.stringify({ username, password }),
+    })
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("Network response was not ok");
+        }
+        return response.json();
+      })
+      .then((data) => {
+        console.log("Login successful:", data);
+        router.push("/home");
+      })
+      .catch((error) => {
+        console.error("Login failed:", error);
+      });
   };
 
   return (
@@ -24,38 +43,42 @@ const Login = () => {
       <Head>
         <title>Login</title>
       </Head>
-      
+
       <div className="login-wrapper">
         <div className="login-container">
           <h1>Welcome Back to DressCode!</h1>
           <form onSubmit={handleSubmit}>
             <div className="input-group">
               <label htmlFor="username">Username</label>
-              <input 
-                type="text" 
-                id="username" 
+              <input
+                type="text"
+                id="username"
                 value={username}
                 onChange={(e) => setUsername(e.target.value)}
-                required 
+                required
               />
             </div>
             <div className="input-group">
               <label htmlFor="password">Password</label>
-              <input 
-                type="password" 
-                id="password" 
+              <input
+                type="password"
+                id="password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                required 
+                required
               />
             </div>
-            <button type="submit" className="button">LOG IN</button>
+            <button type="submit" className="button">
+              LOG IN
+            </button>
           </form>
           <div className="forgot-password">
             <a href="#">Forgot password?</a>
           </div>
           <div className="signup-link">
-            <p>Don't have an account? <a href="#">Sign up</a></p>
+            <p>
+              Don't have an account? <a href="#">Sign up</a>
+            </p>
           </div>
         </div>
 
@@ -95,52 +118,52 @@ const Login = () => {
           justify-content: center;
           align-items: center;
           min-height: 100vh;
-          background-color: #F9F4E7;
+          background-color: #f9f4e7;
           padding: 1rem;
         }
-        
+
         .login-container {
           width: 100%;
           max-width: 400px;
           padding: 24px;
-          background-color: #EF6A3F;
+          background-color: #ef6a3f;
           border-radius: 16px;
           box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
           color: white;
           margin-bottom: 70px;
         }
-        
+
         .logo {
           text-align: center;
           margin-bottom: 32px;
         }
-        
+
         .logo-placeholder {
           width: 80px;
           height: 80px;
           border-radius: 50%;
-          background-color: #F9F4E7;
+          background-color: #f9f4e7;
           margin: 0 auto;
         }
-        
+
         h1 {
           margin-bottom: 32px;
           text-align: center;
           font-size: 24px;
-          color: #D9F855;
+          color: #d9f855;
           font-weight: bold;
         }
-        
+
         .input-group {
           margin-bottom: 20px;
         }
-        
+
         .input-group label {
           display: block;
           margin-bottom: 8px;
           font-size: 16px;
         }
-        
+
         .input-group input {
           width: 100%;
           padding: 12px 16px;
@@ -148,14 +171,14 @@ const Login = () => {
           border-radius: 8px;
           font-size: 16px;
           color: #171717;
-          background-color: #F9F4E7;
+          background-color: #f9f4e7;
         }
-        
+
         .button {
           width: 100%;
           padding: 12px;
-          background-color: #96A8FD;
-          color: #D9F855;
+          background-color: #96a8fd;
+          color: #d9f855;
           border: none;
           border-radius: 20px;
           color: white;
@@ -164,32 +187,31 @@ const Login = () => {
           cursor: pointer;
           transition: background-color 0.3s;
         }
-        
+
         .button:hover {
-          background-color: #96A8FD;
+          background-color: #96a8fd;
         }
-        
+
         .forgot-password {
           text-align: center;
           margin-top: 16px;
         }
-        
+
         .forgot-password a {
           color: white;
           text-decoration: none;
         }
-        
+
         .signup-link {
           text-align: center;
           margin-top: 32px;
         }
-        
+
         .signup-link a {
           color: white;
           text-decoration: none;
           font-weight: bold;
         }
-        
       `}</style>
     </>
   );

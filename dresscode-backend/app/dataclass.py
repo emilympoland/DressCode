@@ -5,11 +5,18 @@ from enum import Enum
 
 
 class Weather(Enum):
-    WARM = "warm"
-    COLD = "cold"
-    RAIN = "rain"
-    WIND = "wind"
-    SNOW = "snow"
+    warm = "warm"
+    cold = "cold"
+    rain = "rain"
+    wind = "wind"
+    snow = "snow"
+
+
+class ClothingType(Enum):
+    shirts = "shirts"
+    pants = "pants"
+    shoes = "shoes"
+    tops = "tops"
 
 
 class UserCreate(BaseModel):
@@ -21,16 +28,16 @@ class UserCreate(BaseModel):
 class ClothingItem:
     id: int
     image_url: str
-    tags: List[str]
+    clothing_type: ClothingType
     season: Weather
     status: str = "active"  # Default status
     description: str = ""
     borrowed: bool = False
 
-    def __init__(self, id: int, image_url: str, tags: List[str], season: Weather, status: str = "active", description: str = "", borrowed: bool = False):
+    def __init__(self, id: int, image_url: str, clothing_type: ClothingType, season: Weather, status: str = "active", description: str = "", borrowed: bool = False):
         self.id = id
         self.image_url = image_url
-        self.tags = tags
+        self.clothing_type = clothing_type
         self.season = season
         self.status = status
         self.description = description
@@ -64,7 +71,7 @@ class UserData:
     requests: List[int] = field(default_factory=list)
 
 
-    def __init__(self, username: str, password: str, profile_pic_url: str = "", wardrobe: List[int] = [], requests: List[int] = []):
+    def __init__(self, username: str, password: str, wardrobe: List[int], requests: List[int], profile_pic_url: str = ""):
         self.username = username
         self.password = password
         self.profile_pic_url = profile_pic_url
