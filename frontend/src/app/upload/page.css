@@ -1,32 +1,54 @@
+@import url('https://fonts.googleapis.com/css2?family=Alexandria:wght@100..900&display=swap');
+
+:root {
+    font-family: "Alexandria", sans-serif;
+}
+
 #upload-container {
+    font-family: "Alexandria", sans-serif;
     color: black;
     padding: 16px;
     max-width: 500px;
-    margin: 0 auto;
     text-align: center;
     align-content: center;
     flex: 1;
 }
 
 #upload-button {
+    font-family: "Alexandria", sans-serif;
     border-radius: 30px;
     padding: 10px;
     margin: 5px;
     padding-left: 40px;
     padding-right: 40px;
     background-color: #EF6A3F;
+    color: #F9F4E7;
 }
 
   
   h1 {
+    font-family: "Alexandria", sans-serif;
     font-size: 1.5rem;
     margin-bottom: 1rem;
+    color: #96A8FD;
   }
   
   input[type="text"] {
+    font-family: "Alexandria", sans-serif;
     width: 100%;
     padding: 12px;
     margin-bottom: 12px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 1rem;
+    box-sizing: border-box;
+    color: #F9F4E7;
+  }
+  input[type="file"] {
+    font-family: "Alexandria", sans-serif;
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 30px;
     border: 1px solid #ccc;
     border-radius: 8px;
     font-size: 1rem;
@@ -44,7 +66,7 @@
     
 
   }
-  .action-buttons {
+  .action-buttons-popup {
     color: #F9F4E7;
     background-color:#EF6A3F;
     border-radius: 30px;

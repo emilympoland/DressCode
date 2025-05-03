@@ -1,11 +1,17 @@
+@import url('https://fonts.googleapis.com/css2?family=Alexandria:wght@100..900&display=swap');
+
+
 #header-profile {
+    font-family: "Alexandria", sans-serif;
     display: flex;
     flex-direction: row;
     gap: 30px;
     padding: 30px;
     color: black;
 }
+
 h2 {
+    font-family: "Alexandria", sans-serif;
     color: black;
 }
 
@@ -16,6 +22,7 @@ h2 {
 }
 
 .popup-button {
+    font-family: "Alexandria", sans-serif;
     border-radius: 30px;
     padding: 10px;
     margin: 5px;
@@ -26,19 +33,23 @@ h2 {
 }
 
 button {
+    font-family: "Alexandria", sans-serif;
     border-radius: 20px;
     padding: 20px;
     margin: 10px;
     background-color: #96A8FD;
 }
 #myCloset {
+    font-family: "Alexandria", sans-serif;
     background-color: #EF6A3F;
 }
 
 #savedOutfits {
+    font-family: "Alexandria", sans-serif;
     background-color: #EF6A3F;
 }
 .tabButton {
+    font-family: "Alexandria", sans-serif;
     padding: 10px 30px;
     padding-bottom: 0px;
     
@@ -53,17 +64,20 @@ button {
   }
   
   .tabButton:hover {
+    font-family: "Alexandria", sans-serif;
     background-color: rgb(216, 216, 216);
     color: black;
   }
   
   .activeTab {
+    font-family: "Alexandria", sans-serif;
     background-color: #EF6A3F; 
     color: #D9F855;
     font-weight: bold;
   }
 
   #myClosetitems {
+    font-family: "Alexandria", sans-serif;
     display: grid;
     background-color: #EF6A3F;
     grid-template-columns: repeat(auto-fill, minmax(100px, 2fr));
@@ -71,6 +85,7 @@ button {
     padding: 20px;
   }
   #myClosetitems img {
+    font-family: "Alexandria", sans-serif;
     width: 100%;
     height: auto;
     border-radius: 8px;
@@ -78,6 +93,7 @@ button {
   }
 
   #buttons-area {
+    font-family: "Alexandria", sans-serif;
     position: fixed;
     display: flex;
     flex-direction: row;
@@ -88,6 +104,7 @@ button {
   }
 
   .actions {
+    font-family: "Alexandria", sans-serif;
     position: fixed;
     display: flex;
     justify-content: center;
@@ -97,7 +114,9 @@ button {
     
 
   }
+
   .action-buttons {
+    font-family: "Alexandria", sans-serif;
     background-color: #F9F4E7;
     color:#EF6A3F;
     border-radius: 30px;
@@ -110,6 +129,7 @@ button {
   }
 
   .tabContent {
+    font-family: "Alexandria", sans-serif;
     min-height: 100vh;
     flex-grow: 1; 
     background-color: #EF6A3F;
@@ -117,29 +137,34 @@ button {
   }
 
   #saved-outfits-container {
+    font-family: "Alexandria", sans-serif;
     margin-bottom: 20px;
     padding: 10px;
     border-radius: 10px;
   }
 
   #saved-outfit-item {
+    font-family: "Alexandria", sans-serif;
     display: flex;
     flex-direction: row;
   }
 
   #saved-item {
+    font-family: "Alexandria", sans-serif;
     width: 100px;
     height: 100px;
     margin: 5px;
   }
 
   .item-object {
+    font-family: "Alexandria", sans-serif;
     width: 150px;
     height:  150px; 
     display: flex;
     object-fit: cover;
   }
   .item-popup {
+    font-family: "Alexandria", sans-serif;
     width: 250px; 
     height: 250px; 
     object-fit: cover; 
@@ -147,6 +172,7 @@ button {
     margin-bottom: 20px;
   }
   .header {
+    font-family: "Alexandria", sans-serif;
     color:black; 
     display: flex; 
     justify-content: center;

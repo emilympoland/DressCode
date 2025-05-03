@@ -37,7 +37,7 @@ const Upload = () => {
 
   return (
     <div id="upload-container">
-      <h1>Upload New Piece of Clothing</h1>
+      <h1 >Upload New</h1>
 
       <div>
         <input type="file" onChange={onFileChange} id="upload-button"/>
@@ -81,7 +81,7 @@ const Upload = () => {
               />
             </div>
             <div className="actions">
-              <button className="action-buttons" onClick={() => {
+              <button className="action-buttons-popup" onClick={() => {
                 setImageUrl("");
                 setSelectedFile(null);
                 setHasSelectedFile(false);
@@ -89,7 +89,7 @@ const Upload = () => {
                 close();
               }}>Re-Upload</button>
 
-              <button className="action-buttons">Save</button>
+              <button className="action-buttons-popup">Save</button>
             </div>
           </div>
         )}
