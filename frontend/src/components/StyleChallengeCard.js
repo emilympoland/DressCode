@@ -1,75 +1,105 @@
-'use client';
-import { useState } from 'react';
-import ClothingGridSection from './ClothingGridSection';
-import PillButton from './PillButton';
-import { useRouter } from 'next/navigation';
+"use client"
+import { useState, useEffect } from "react";
+import axios from "axios";
+import ClothingItem from "./ClothingItem";
+import PillButton from "./PillButton";
 
 export default function StyleChallengeCard() {
-    const router = useRouter();
+  const [challenge, setChallenge] = useState(null); // Challenge data
+  const [selectedTop, setSelectedTop] = useState(null); // Selected top ID
+  const [selectedBottom, setSelectedBottom] = useState(null); // Selected bottom ID
+  const [selectedShoe, setSelectedShoe] = useState(null); // Selected shoe ID
 
-    const [selectedTop, setSelectedTop] = useState(null);
-    const [selectedBottom, setSelectedBottom] = useState(null);
-    const [selectedShoe, setSelectedShoe] = useState(null);
+  // Fetch challenge data on component mount
+  useEffect(() => {
+    axios
+      .get("/api/challenge/today")
+      .then((response) => {
+        setChallenge(response.data);
+      })
+      .catch((error) => {
+        console.error("Error fetching challenge:", error);
+      });
+  }, []);
 
-    const tops = [
-        { id: 'top1', imageUrl: '/Mock Clothes/top1.jpg' },
-        { id: 'top2', imageUrl: '/Mock Clothes/top2.jpg' },
-        { id: 'top3', imageUrl: '/Mock Clothes/top3.jpg' },
-    ];
+  // Handle "Next" button click
+  const handleNext = () => {
+    if (!selectedTop || !selectedBottom || !selectedShoe) {
+      alert("Please select a top, bottom, and shoe.");
+      return;
+    }
 
-    const bottoms = [
-        { id: 'bottom1', imageUrl: '/Mock Clothes/pants1.jpg' },
-        { id: 'bottom2', imageUrl: '/Mock Clothes/pants2.jpg' },
-        { id: 'bottom3', imageUrl: '/Mock Clothes/pants3.jpg' },
-    ];
+    axios
+      .post("/api/challenge/submit", {
+        top_id: selectedTop,
+        bottom_id: selectedBottom,
+        shoe_id: selectedShoe,
+      })
+      .then((response) => {
+        alert(response.data.summary); // Display the summary from the backend
+      })
+      .catch((error) => {
+        console.error("Error submitting outfit:", error);
+      });
+  };
 
-    const shoes = [
-        { id: 'shoe1', imageUrl: '/Mock Clothes/shoe1.jpg' },
-        { id: 'shoe2', imageUrl: '/Mock Clothes/shoe2.jpg' },
-        { id: 'shoe3', imageUrl: '/Mock Clothes/shoe3.jpg' },
-    ];
+  if (!challenge) {
+    return <p>Loading...</p>; // Show a loading message while fetching data
+  }
 
-    const handleNext = () => {
-        if (selectedTop && selectedBottom && selectedShoe) {
-            // In a real app, you'd save this to global state or query params
-            router.push('/suggestion');
-        } else {
-            alert('Please select a top, bottom, and shoes to continue.');
-        }
-    };
+  return (
+    <div className="w-9/10 max-w-md bg-[#EF6A3F] rounded-2xl p-6">
+      <h2 className="text-white text-lg font-alexandria text-center mb-5">
+        {challenge.prompt}
+      </h2>
 
-    return (
-        <div className="w-9/10 max-w-md bg-[#EF6A3F] rounded-2xl p-6">
-
-            <h2 className="text-white text-lg font-alexandria text-center mb-5">Daily Style Challenge</h2>
-
-            <ClothingGridSection
-                title="Choose a top"
-                items={tops}
-                selectedItemId={selectedTop}
-                onSelect={setSelectedTop}
-                onRefresh={() => console.log('refresh tops')}
+      <div className="flex">
+        {/* Top Clothing Items */}
+        <div className="rounded-lg w-1/3 mr-2 flex flex-col items-center justify-between">
+          {challenge.tops.map((item) => (
+            <ClothingItem
+              key={item.id}
+              imageUrl={item.image_url}
+              name={item.name}
+              size={30}
+              isSelected={selectedTop === item.id}
+              onClick={() => setSelectedTop(item.id)}
             />
-
-            <ClothingGridSection
-                title="Choose a bottom"
-                items={bottoms}
-                selectedItemId={selectedBottom}
-                onSelect={setSelectedBottom}
-                onRefresh={() => console.log('refresh bottoms')}
-            />
-
-            <ClothingGridSection
-                title="Choose a shoe"
-                items={shoes}
-                selectedItemId={selectedShoe}
-                onSelect={setSelectedShoe}
-                onRefresh={() => console.log('refresh shoes')}
-            />
-
-            <div className="pt-2">
-                <PillButton text="next" onClick={handleNext} />
-            </div>
+          ))}
         </div>
-    );
+
+        {/* Bottom Clothing Items */}
+        <div className="rounded-lg w-1/3 mx-2 flex flex-col items-center justify-between">
+          {challenge.bottoms.map((item) => (
+            <ClothingItem
+              key={item.id}
+              imageUrl={item.image_url}
+              name={item.name}
+              size={30}
+              isSelected={selectedBottom === item.id}
+              onClick={() => setSelectedBottom(item.id)}
+            />
+          ))}
+        </div>
+
+        {/* Shoe Clothing Items */}
+        <div className="rounded-lg w-1/3 ml-2 flex flex-col items-center justify-between">
+          {challenge.shoes.map((item) => (
+            <ClothingItem
+              key={item.id}
+              imageUrl={item.image_url}
+              name={item.name}
+              size={30}
+              isSelected={selectedShoe === item.id}
+              onClick={() => setSelectedShoe(item.id)}
+            />
+          ))}
+        </div>
+      </div>
+
+      <div className="pt-4">
+        <PillButton text="Next" onClick={handleNext} />
+      </div>
+    </div>
+  );
 }

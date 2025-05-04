@@ -36,4 +36,5 @@ def user_create(user: UserCreate) -> UserData:
     )
     
     users.append(db_user)
+    
     return db_user
