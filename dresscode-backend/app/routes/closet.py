@@ -6,7 +6,7 @@ from datetime import datetime
 import os
 from app.dataclass import ClothingItem, Weather, UserData, ClothingType
 from app.core.auth import get_current_user_from_token
-from app.services.closet_service import get_closet_items, update_closet_item, delete_closet_item, add_closet_item, get_closet_item
+from app.services.closet_service import get_closet_items, update_closet_item, delete_closet_item, add_closet_item, get_closet_item, serialize, load_items
 
 router = APIRouter()
 
@@ -61,3 +61,13 @@ async def delete_item(item_id: int, user: UserData = Depends(get_current_user_fr
         raise HTTPException(status_code=400, detail=str(e))
     except Exception as e:
         raise HTTPException(status_code=500, detail="Failed to delete item")
+    
+
+@router.get("/api/closet/serialize")
+async def serialize_items():
+    serialize()
+
+
+@router.get("/api/closet/load")
+async def load():
+    load_items()

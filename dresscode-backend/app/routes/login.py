@@ -10,7 +10,7 @@ router = APIRouter()
 async def create_user(user: UserCreate, response: Response) -> Dict:
     try:
         user_data = user_create(user)
-        return await login_helper(user, response)
+        return await login_helper(user_data, response)
     
     except ValueError as e:
         raise HTTPException(status_code=400, detail=str(e))
@@ -32,19 +32,16 @@ def list_users() -> List[Dict]:
 @router.post("/api/login")
 async def login(data: UserCreate, response: Response) -> Dict:
     try:
-        return await login_helper(data, response)
+        user = verify_user(data.username, data.password)
+        if not user:
+            raise ValueError
+        return await login_helper(user, response)
 
     except Exception as e:
         raise HTTPException(status_code=500, detail="Login failed")
     
 
-async def login_helper(data: UserCreate, response: Response) -> Dict:
-    if not data.username or not data.password:
-        raise HTTPException(status_code=400, detail="Username and password are required")
-    
-    user = verify_user(data.username, data.password)
-    if not user:
-        raise HTTPException(status_code=401, detail="Invalid username or password")
+async def login_helper(user: UserData, response: Response) -> Dict:
     
     # Create a token with the username as subject
     token = create_access_token({"sub": user.username})

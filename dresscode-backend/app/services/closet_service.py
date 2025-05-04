@@ -1,13 +1,16 @@
 from app.dataclass import UserData, ClothingItem, Weather, ClothingType
 from app.core.config import openai_api_key
+from app.services.user_service import get_all_users
 from typing import Dict, List, Optional
+from dataclasses import asdict
 
+import json
 import base64
 import openai
 
 # In-memory storage for next item ID
 next_item_id = 0
-items = {}
+items: dict[int, ClothingItem] = {}
 
 def encode_image(image_path: str) -> str:
     with open(image_path, "rb") as image_file:
@@ -16,6 +19,12 @@ def encode_image(image_path: str) -> str:
 def get_closet_items(user: UserData) -> List[ClothingItem]:
     """Get all items in a user's closet."""
     return [items[id] for id in user.wardrobe]
+
+def get_all_closet_items() -> dict[int, ClothingItem]:
+    return items
+
+def get_item_type(clothing_type: ClothingType) -> List[ClothingItem]:
+    return list(filter(lambda item: item.clothing_type == clothing_type, items.values()))
 
 def get_closet_item(item_id: int) -> ClothingItem:
     return items[item_id]
@@ -36,7 +45,7 @@ def add_closet_item(user: UserData, image_url: str, clothing_type: ClothingType,
                     {
                         "type": "image_url",
                         "image_url": {
-                            "url": "https://i.pinimg.com/736x/fc/64/51/fc64518d5c694c622c954ce7ebc10041.jpg",
+                            "url": image_url,
                         },
                     },
                 ],
@@ -79,9 +88,6 @@ def update_closet_item(user: UserData, item_id: int, updates: Dict) -> ClothingI
     
     item = items[item_id]
     
-    # Update tags if provided
-    if "updated_tags" in updates:
-        item.tags = [tag.strip() for tag in updates["updated_tags"].split(",") if tag.strip()]
     
     # Update status if provided
     if "status" in updates:
@@ -97,3 +103,58 @@ def delete_closet_item(user: UserData, item_id: int) -> None:
     # Remove item from user's wardrobe
     user.wardrobe.remove(item_id)
     del items[item_id]
+
+
+def serialize():
+    serialized = {}
+    for key, item in items.items():
+        # Ensure the item is converted to a dict
+        i = asdict(item)
+        i["clothing_type"] = i["clothing_type"].value
+        i["season"] = i["season"].value
+        serialized[key] = i
+        
+    # Write the serialized items to a JSON file
+    with open("closet_items.json", "w") as f:
+        json.dump(serialized, f, indent=4)
+
+
+def load_items():
+    global items, next_item_id
+    users = get_all_users()
+    try:
+        with open("closet_items.json", "r") as f:
+            loaded = json.load(f)
+        # Clear existing items
+        items.clear()
+        next_item_id = 0
+
+        i = 0
+        n = len(users)
+        for key, data in loaded.items():
+            key_int = int(key)
+            # Reconstruct enum values from the string
+            clothing_type = ClothingType(data["clothing_type"])
+            season = Weather(data["season"])
+            # Create the ClothingItem; adjust the field names based on your dataclass.
+            item = ClothingItem(
+                id=data["id"],
+                image_url=data["image_url"],
+                clothing_type=clothing_type,
+                season=season,
+                status=data["status"],
+                description=data["description"]
+            )
+            items[key_int] = item
+            users[i % n].wardrobe.append(key_int)
+            i += 1
+            if key_int >= next_item_id:
+                next_item_id = key_int + 1
+
+    except FileNotFoundError:
+        # If the file doesn't exist, simply pass.
+        pass
+
+    except Exception as e:
+        print(e)
+        raise ValueError

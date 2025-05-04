@@ -1,17 +1,22 @@
-import { Geist, Geist_Mono, Bricolage_Grotesque, Alexandria} from "next/font/google";
+import {
+  Geist,
+  Geist_Mono,
+  Bricolage_Grotesque,
+  Alexandria,
+} from "next/font/google";
 import "./globals.css";
-import Navbar from '../components/NavBar'; // adjust path if needed
-import Head from 'next/head';
+import Navbar from "../components/NavBar"; // adjust path if needed
+import Head from "next/head";
 
 const bricolage_grotesque = Bricolage_Grotesque({
-  subsets: ['latin'],
-  variable: '--font-bricolage',
-})
+  subsets: ["latin"],
+  variable: "--font-bricolage",
+});
 
 const alexandria = Alexandria({
-  subsets: ['latin'],
-  variable: '--font-alexandria',
-})
+  subsets: ["latin"],
+  variable: "--font-alexandria",
+});
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -32,11 +37,31 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <Head>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+        <meta
+          name="viewport"
+          content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+        />
       </Head>
-      <body className={`${geistSans.variable} ${geistMono.variable} ${alexandria.variable} ${bricolage_grotesque.variable}`} style={{ margin: 0, padding: 0, height: "100vh", display: "flex", flexDirection: "column" }}>
+      <body
+        className={`${geistSans.variable} ${geistMono.variable} ${alexandria.variable} ${bricolage_grotesque.variable}`}
+        style={{
+          margin: 0,
+          padding: 0,
+          height: "100vh",
+          display: "flex",
+          flexDirection: "column",
+        }}
+      >
         <Navbar />
-        <div style={{ flex: 1, overflowY: "auto", display: "flex", flexDirection: "column" }}>
+        <div
+          style={{
+            flex: 1,
+            overflowY: "auto",
+            display: "flex",
+            flexDirection: "column",
+            paddingBottom: "80px", // added bottom padding to account for navbar height
+          }}
+        >
           {children}
         </div>
       </body>

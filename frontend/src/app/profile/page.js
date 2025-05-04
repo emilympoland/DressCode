@@ -15,6 +15,7 @@ export default function Profile() {
   const [currClosetItems, setCurrClosetItems] = useState([]);
 
   // Other state variables...
+  const [username, setUsername] = useState("");
   const [selectedItems, setSelectedItems] = useState([]);
   const [savedOutfits, setSavedOutfits] = useState([]);
   const [activeTab, setActiveTab] = useState("myCloset");
@@ -33,7 +34,7 @@ export default function Profile() {
       .then((response) => {
         if (response.status === 401) {
           console.log("Not logged in");
-          router.push("/login");
+          router.push("/");
           return Promise.resolve(null);
         }
         if (!response.ok) {
@@ -50,6 +51,36 @@ export default function Profile() {
       })
       .catch((error) => {
         console.error("Error fetching closet data:", error);
+      });
+  }, [server_url, router]);
+
+  useEffect(() => {
+    fetch(`${server_url}/api/user/me`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      credentials: "include", // sends cookies with the request
+    })
+      .then((response) => {
+        if (response.status === 401) {
+          console.log("Not logged in");
+          router.push("/");
+          return Promise.resolve(null);
+        }
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        return response.json();
+      })
+      .then((data) => {
+        if (data) {
+          console.log("Closet fetch successful!", data);
+          setUsername(data.username);
+        }
+      })
+      .catch((error) => {
+        console.error("Error fetching user data:", error);
       });
   }, [server_url, router]);
 
@@ -90,21 +121,25 @@ export default function Profile() {
       <div id="header-profile">
         <img src="anonymous_profile.png" id="profile_picture" alt="Profile" />
         <div id="header-info">
-          <h2>John Doe</h2>
-          <h4>@johndoe</h4>
+          <h2>{username}</h2>
+          <h4>@{username}</h4>
         </div>
       </div>
 
       <div className="pageContainer">
         <div className="tabs">
           <button
-            className={`tabButton purpleButton ${activeTab === "myCloset" ? "activeTab" : ""}`}
+            className={`tabButton purpleButton ${
+              activeTab === "myCloset" ? "activeTab" : ""
+            }`}
             onClick={() => setActiveTab("myCloset")}
           >
             My Closet
           </button>
           <button
-            className={`tabButton purpleButton ${activeTab === "savedOutfits" ? "activeTab" : ""}`}
+            className={`tabButton purpleButton ${
+              activeTab === "savedOutfits" ? "activeTab" : ""
+            }`}
             onClick={() => setActiveTab("savedOutfits")}
           >
             Saved Outfits

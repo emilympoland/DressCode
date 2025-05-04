@@ -10,8 +10,8 @@ def submit(top_id: int, bottom_id: int, shoe_id: int) -> str | None:
     bottom = get_closet_item(bottom_id)
     shoe = get_closet_item(shoe_id)
     prompt = f"""
-The current prompt for choosing an outfit is Monochrome Outfits. Given the following three clothing item descriptions, give a short description of the outfit selection, as well as 
-how well the outfit fits into the theme of Monochrome Outfits.
+Today's weather is 75 degrees and sunny. Given the following three clothing item descriptions, give a short description of the outfit selection, as well as 
+how well the outfit fits together.
 Top: {top.description}
 Bottom: {bottom.description}
 Shoe: {shoe.description}

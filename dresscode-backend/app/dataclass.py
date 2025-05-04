@@ -97,14 +97,7 @@ class Post:
 
 @dataclass
 class Challenge:
-    tops: List[ClothingItem]
-    bottoms: List[ClothingItem]
-    shoes: List[ClothingItem]
-    prompt: str
+    items: List[ClothingItem]
 
-
-    def __init__(self, tops: List[ClothingItem], bottoms: List[ClothingItem], shoes: List[ClothingItem], prompt: str):
-        self.tops = tops
-        self.bottoms = bottoms
-        self.shoes = shoes
-        self.prompt = prompt
+    def __init__(self, items: List[ClothingItem]):
+        self.items = items
