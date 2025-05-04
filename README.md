@@ -15,7 +15,7 @@ npm install
 npm run dev
 ```
 
-To setup backend, cd into the leetduel-backend directory and create a .env.local file with the following contents:
+To setup backend, cd into the dresscode-backend directory and create a .env.local file with the following contents:
 
 ```
 CLIENT_URL="http://localhost:3000"
