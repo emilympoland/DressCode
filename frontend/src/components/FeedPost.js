@@ -6,10 +6,10 @@ export default function FeedPost({ post, onItemClick }) {
     <div className="post-container">
       <div className="post-header">
         <img src="anonymous_profile.png" id="user-avatar" />
-        <div className="username">@{post.username}</div>
+        <div className="username font-alexandria">@{post.username}</div>
       </div>
 
-      <div className="caption">
+      <div className="caption font-bricolage">
         {post.caption}
       </div>
       
@@ -26,7 +26,7 @@ export default function FeedPost({ post, onItemClick }) {
               className="item-request-button"
               onClick={() => onItemClick(item)}
             >
-              BORROW
+              borrow
             </button>
           </div>
         ))}

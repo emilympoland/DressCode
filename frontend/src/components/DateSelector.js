@@ -17,7 +17,7 @@ export default function DateSelector({ item, onBack, onConfirm }) {
   return (
     <div className="flex items-center justify-center min-h-screen">
       <div className="flex flex-col items-center justify-center p-4 rounded-2xl bg-[#EB6D39] w-[90%] max-w-md mx-auto -mt-16">
-        <h2 className="text-[#D9F855] text-lg mb-4 font-semibold text-center">
+        <h2 className="text-lg mb-4 font-semibold text-center font-alexandria">
           Select Date Range to Borrow
         </h2>
 
@@ -42,7 +42,7 @@ export default function DateSelector({ item, onBack, onConfirm }) {
           <button
             onClick={onConfirm}
             disabled={!startDate || !endDate}
-            className={`rounded-full px-6 py-2 text-sm font-bold ${
+            className={`font-alexandria rounded-full px-6 py-2 text-sm font-bold ${
               !startDate || !endDate
                 ? "bg-gray-300 text-gray-500 cursor-not-allowed"
                 : "bg-[#96A8FD] text-[#D9F855]"

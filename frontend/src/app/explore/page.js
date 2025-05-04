@@ -50,13 +50,13 @@ export default function Explore() {
   const [borrowRequests, setBorrowRequests] = useState([]);
   const [view, setView] = useState('feed'); // 'feed', 'detail', 'dateSelect', 'requestSent'
   const [selectedItem, setSelectedItem] = useState(null);
-  
+
   // individual item click in feed
   const handleItemClick = (item) => {
     setSelectedItem(item);
     setView('detail');
   };
-  
+
   // back button
   const handleBack = () => {
     if (view === 'detail') {
@@ -67,12 +67,12 @@ export default function Explore() {
       setView('feed');
     }
   };
-  
+
   // request to borrow
   const handleRequestBorrow = () => {
     setView('dateSelect');
   };
-  
+
   // confirm date
   const handleConfirmDate = () => {
     // Create a new borrow request with selected item data
@@ -85,38 +85,38 @@ export default function Explore() {
       dateRange: 'April 26 - May 3, 2025',
       status: 'pending'
     };
-    
+
     // Add this request to the borrowRequests state
     setBorrowRequests([...borrowRequests, newRequest]);
-    
+
     // Set view to show success message and then return to feed
     setView('requestSent');
   };
-  
+
   return (
-    <main>      
+    <main>
       {view === 'feed' && (
-        <div className="feed-container">
-          <div className="feed-toggle">Friends Feed</div>
+        <div className="feed-container ">
+          {/* <p className="feed-title">Explore Feed</p> */}
           
           {dummyPosts.map(post => (
-            <FeedPost 
-              key={post.id} 
+            <FeedPost
+              key={post.id}
               post={post}
               onItemClick={handleItemClick}
             />
           ))}
         </div>
       )}
-      
+
       {view === 'detail' && selectedItem && (
-        <ExpandedPost 
+        <ExpandedPost
           item={selectedItem}
           onBack={handleBack}
           onRequestBorrow={handleRequestBorrow}
         />
       )}
-      
+
       {view === 'dateSelect' && selectedItem && (
         <DateSelector
           item={selectedItem}
@@ -124,14 +124,14 @@ export default function Explore() {
           onConfirm={handleConfirmDate}
         />
       )}
-      
+
       {view === 'requestSent' && (
         <div className="flex items-center justify-center min-h-screen -mt-8">
           <div className="feed-container">
             <div className="text-center px-5 py-10">
               <h2>Request Sent!</h2>
               <p>Your borrow request for {selectedItem?.name} has been sent to the owner.</p>
-              <button 
+              <button
                 className="borrow-button mx-auto max-w-[200px] px-8"
                 onClick={handleBack}
               >

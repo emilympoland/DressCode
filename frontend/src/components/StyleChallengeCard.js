@@ -11,18 +11,18 @@ export default function StyleChallengeCard() {
     const [selectedBottom, setSelectedBottom] = useState(null);
     const [selectedShoe, setSelectedShoe] = useState(null);
 
-        const tops = [
+    const tops = [
         { id: 'top1', imageUrl: '/Mock Clothes/top1.jpg' },
         { id: 'top2', imageUrl: '/Mock Clothes/top2.jpg' },
         { id: 'top3', imageUrl: '/Mock Clothes/top3.jpg' },
     ];
-    
+
     const bottoms = [
         { id: 'bottom1', imageUrl: '/Mock Clothes/pants1.jpg' },
         { id: 'bottom2', imageUrl: '/Mock Clothes/pants2.jpg' },
         { id: 'bottom3', imageUrl: '/Mock Clothes/pants3.jpg' },
     ];
-    
+
     const shoes = [
         { id: 'shoe1', imageUrl: '/Mock Clothes/shoe1.jpg' },
         { id: 'shoe2', imageUrl: '/Mock Clothes/shoe2.jpg' },
@@ -52,24 +52,24 @@ export default function StyleChallengeCard() {
             />
 
             <ClothingGridSection
-        title="Choose a bottom"
-        items={bottoms}
-        selectedItemId={selectedBottom}
-        onSelect={setSelectedBottom}
-        onRefresh={() => console.log('refresh bottoms')}
-      />
+                title="Choose a bottom"
+                items={bottoms}
+                selectedItemId={selectedBottom}
+                onSelect={setSelectedBottom}
+                onRefresh={() => console.log('refresh bottoms')}
+            />
 
-      <ClothingGridSection
-        title="Choose a shoe"
-        items={shoes}
-        selectedItemId={selectedShoe}
-        onSelect={setSelectedShoe}
-        onRefresh={() => console.log('refresh shoes')}
-      />
+            <ClothingGridSection
+                title="Choose a shoe"
+                items={shoes}
+                selectedItemId={selectedShoe}
+                onSelect={setSelectedShoe}
+                onRefresh={() => console.log('refresh shoes')}
+            />
 
-      <div className="pt-2">
-        <PillButton text="next" onClick={handleNext} />
-      </div>
+            <div className="pt-2">
+                <PillButton text="next" onClick={handleNext} />
+            </div>
         </div>
     );
 }

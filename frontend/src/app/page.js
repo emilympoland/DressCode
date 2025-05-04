@@ -11,10 +11,10 @@ const Login = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    
+
     // Simply log the attempt and redirect without any validation
     console.log('Login attempt with:', { username, password });
-    
+
     // Redirect to home page without any credential validation
     router.push('/home'); // Redirects to home page for any credentials
   };
@@ -24,38 +24,38 @@ const Login = () => {
       <Head>
         <title>Login</title>
       </Head>
-      
+
       <div className="login-wrapper">
         <div className="login-container">
-          <h1>Welcome Back to DressCode!</h1>
+          <h1 className="font-alexandria">DressCode</h1>
           <form onSubmit={handleSubmit}>
             <div className="input-group">
-              <label htmlFor="username">Username</label>
-              <input 
-                type="text" 
-                id="username" 
+              <label htmlFor="username" className='font-alexandria'>Username</label>
+              <input
+                type="text"
+                id="username"
                 value={username}
                 onChange={(e) => setUsername(e.target.value)}
-                required 
+                required
               />
             </div>
             <div className="input-group">
-              <label htmlFor="password">Password</label>
-              <input 
-                type="password" 
-                id="password" 
+              <label htmlFor="password" className='font-alexandria'>Password</label>
+              <input
+                type="password"
+                id="password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                required 
+                required
               />
             </div>
-            <button type="submit" className="button">LOG IN</button>
+            <button type="submit" className="button font-alexandria">LOG IN</button>
           </form>
-          <div className="forgot-password">
+          <div className="forgot-password font-alexandria">
             <a href="#">Forgot password?</a>
           </div>
           <div className="signup-link">
-            <p>Don't have an account? <a href="#">Sign up</a></p>
+            <p className='font-alexandria'>Don't have an account? <a href="#">Sign up</a></p>
           </div>
         </div>
 

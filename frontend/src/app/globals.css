@@ -89,14 +89,13 @@ a {
 }
 
 .username {
-  color: #D9F855;
+  /* color: #D9F855; */
   font-weight: bold;
 }
 
 .caption {
   margin-left: 50px;
   font-size: 14px;
-  font-weight: bold;
   color: #F9F4E7;
 }
 
@@ -144,15 +143,17 @@ a {
 }
 
 .item-request-button {
-  background-color: #96A8FD;
-  color: #D9F855;
+  /* background-color: #96A8FD; */
+  /* color: #D9F855; */
+  background-color: #F9F4E7;
+  color: #EF6A3F;
+  font-family: alexandria, sans-serif;
   border: none;
   padding: 4px 8px;
   border-radius: 20px;
   width: 90%;
   font-weight: bold;
   cursor: pointer;
-  text-transform: uppercase;
   font-size: 12px;
   margin-top: 3px;
 }
@@ -247,7 +248,7 @@ a {
 }
 
 .feed-container {
-  padding: 0 10px;
+  padding: 1.5rem 1rem 4rem 1rem;
   max-width: 600px;
   margin: 0 auto;
   display: flex;
@@ -301,6 +302,7 @@ a {
   cursor: pointer;
   margin-top: 10px;
   font-size: 16px;
+  font-family: alexandria, sans-serif;
 }
 
 /* Item detail styles */
@@ -308,7 +310,7 @@ a {
   background-color: #EF6A3F;
   border-radius: 10px;
   padding: 15px;
-  color: #D9F855;
+  /* color: #D9F855; */
   max-width: 350px;
   display: flex;
   flex-direction: column;
@@ -353,6 +355,7 @@ a {
   font-size: 16px;
   padding-left: 20px;
   padding-right: 20px;
+  font-family: alexandria, sans-serif;
 }
 
 .back-button {
@@ -367,6 +370,7 @@ a {
   font-size: 16px;
   padding-left: 20px;
   padding-right: 20px;
+  font-family: alexandria, sans-serif;
 }
 
 /* date selector styling */

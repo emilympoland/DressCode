@@ -17,9 +17,9 @@ export default function Challenge() {
         weather={mockWeather}
         temperature={mockTemperature}
       />
-      {/* <StyleChallengeCard /> */}
+      <StyleChallengeCard />
       {/* <StyleChallengeSummary /> */}
-      <OutfitSavedConfirmation />
+      {/* <OutfitSavedConfirmation /> */}
     </div>
   );
 }

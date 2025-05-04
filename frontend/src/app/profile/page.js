@@ -98,17 +98,13 @@ export default function Profile() {
       <div className="pageContainer">
         <div className="tabs">
           <button
-            className={`tabButton ${
-              activeTab === "myCloset" ? "activeTab" : ""
-            }`}
+            className={`tabButton purpleButton ${activeTab === "myCloset" ? "activeTab" : ""}`}
             onClick={() => setActiveTab("myCloset")}
           >
             My Closet
           </button>
           <button
-            className={`tabButton ${
-              activeTab === "savedOutfits" ? "activeTab" : ""
-            }`}
+            className={`tabButton purpleButton ${activeTab === "savedOutfits" ? "activeTab" : ""}`}
             onClick={() => setActiveTab("savedOutfits")}
           >
             Saved Outfits
