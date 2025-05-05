@@ -21,4 +21,8 @@ async def create_collection(data: CreateCollection = Body(...), user: UserData =
 @router.get("/api/collections")
 async def collections(user: UserData = Depends(get_current_user_from_token)):
     c = get_collections(user)
-    return [asdict(collection) for collection in c]
+    r = []
+    for collection in c:
+        r.append([asdict(item) for item in collection])
+
+    return r
