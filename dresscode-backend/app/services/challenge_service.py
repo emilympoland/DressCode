@@ -11,7 +11,7 @@ def submit(top_id: int, bottom_id: int, shoe_id: int) -> str | None:
     shoe = get_closet_item(shoe_id)
     prompt = f"""
 Today's weather is 75 degrees and sunny. Given the following three clothing item descriptions, give a short description of the outfit selection, as well as 
-how well the outfit fits together.
+how well the outfit fits together. The response should be less than 450 characters and should be in paragraph format.
 Top: {top.description}
 Bottom: {bottom.description}
 Shoe: {shoe.description}

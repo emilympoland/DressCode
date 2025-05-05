@@ -42,9 +42,6 @@ async def login(data: UserCreate, response: Response) -> Dict:
     
 
 async def login_helper(user: UserData, response: Response) -> Dict:
-    
-    
-    
     # Create a token with the username as subject
     # ok something is wrong in here
     token = create_access_token({"sub": user.username})

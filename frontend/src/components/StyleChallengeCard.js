@@ -1,12 +1,9 @@
-"use client";
-import { useState, useEffect } from "react";
-import ClothingGridSection from "./ClothingGridSection";
-import PillButton from "./PillButton";
-import { useRouter } from "next/navigation";
+'use client';
+import { useState, useEffect } from 'react';
+import ClothingGridSection from './ClothingGridSection';
+import PillButton from './PillButton';
 
-export default function StyleChallengeCard() {
-  const router = useRouter();
-  const server_url = process.env.NEXT_PUBLIC_SERVER_URL;
+export default function StyleChallengeCard({ server_url, onNext }) {
   const [selectedTop, setSelectedTop] = useState(null);
   const [selectedBottom, setSelectedBottom] = useState(null);
   const [selectedShoe, setSelectedShoe] = useState(null);
@@ -15,66 +12,68 @@ export default function StyleChallengeCard() {
   const [bottoms, setBottoms] = useState([]);
   const [shoes, setShoes] = useState([]);
 
+  // Fetch clothing items from the server
   const refreshItems = (itemType, setItemOfType) => {
     fetch(`${server_url}/api/challenge/refresh/${itemType}`, {
-      method: "GET",
+      method: 'GET',
       headers: {
-        "Content-Type": "application/json",
+        'Content-Type': 'application/json',
       },
-      credentials: "include", // sends cookies with the request
+      credentials: 'include', // Include cookies with the request
     })
       .then((response) => {
-        if (response.status === 401) {
-          console.log("Not logged in");
-          router.push("/");
-          return Promise.resolve(null);
-        }
         if (!response.ok) {
-          throw new Error(`HTTP error! status: ${response.status}`);
+          throw new Error(`Failed to fetch ${itemType}`);
         }
         return response.json();
       })
       .then((data) => {
         if (data) {
-          console.log("Closet fetch successful!", data);
           setItemOfType(data.items);
         }
       })
       .catch((error) => {
-        console.error("Error fetching user data:", error);
+        console.error(`Error fetching ${itemType}:`, error);
       });
   };
 
+  // Fetch items on component mount
   useEffect(() => {
-    refreshItems("tops", setTops);
-    refreshItems("pants", setBottoms);
-    refreshItems("shoes", setShoes);
-  }, [server_url, router]);
+    refreshItems('tops', setTops);
+    refreshItems('pants', setBottoms);
+    refreshItems('shoes', setShoes);
+  }, [server_url]);
 
-  // const tops = [
-  //   { id: "top1", imageUrl: "/Mock Clothes/top1.jpg" },
-  //   { id: "top2", imageUrl: "/Mock Clothes/top2.jpg" },
-  //   { id: "top3", imageUrl: "/Mock Clothes/top3.jpg" },
-  // ];
+  // Handle the "Next" button click
+  const handleSubmit = async () => {
+    if (!selectedTop || !selectedBottom || !selectedShoe) {
+      alert('Please select a top, bottom, and shoe.');
+      return;
+    }
 
-  // const bottoms = [
-  //   { id: "bottom1", imageUrl: "/Mock Clothes/pants1.jpg" },
-  //   { id: "bottom2", imageUrl: "/Mock Clothes/pants2.jpg" },
-  //   { id: "bottom3", imageUrl: "/Mock Clothes/pants3.jpg" },
-  // ];
+    try {
+      console.log('selected clothes ids', selectedTop, selectedBottom, selectedShoe);
+      const response = await fetch(`${server_url}/api/challenge/submit`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        credentials: 'include', // Include cookies for authentication
+        body: JSON.stringify({
+          top_id: selectedTop,
+          bottom_id: selectedBottom,
+          shoe_id: selectedShoe,
+        }),
+      });
 
-  // const shoes = [
-  //   { id: "shoe1", imageUrl: "/Mock Clothes/shoe1.jpg" },
-  //   { id: "shoe2", imageUrl: "/Mock Clothes/shoe2.jpg" },
-  //   { id: "shoe3", imageUrl: "/Mock Clothes/shoe3.jpg" },
-  // ];
+      if (!response.ok) {
+        throw new Error('Failed to submit outfit');
+      }
 
-  const handleNext = () => {
-    if (selectedTop && selectedBottom && selectedShoe) {
-      // In a real app, you'd save this to global state or query params
-      router.push("/suggestion");
-    } else {
-      alert("Please select a top, bottom, and shoes to continue.");
+      const data = await response.json();
+      onNext(data); // Pass the server response to the parent component
+    } catch (error) {
+      console.error('Error submitting outfit:', error);
     }
   };
 
@@ -84,12 +83,13 @@ export default function StyleChallengeCard() {
         Daily Style Challenge
       </h2>
 
+      {/* Render clothing items */}
       <ClothingGridSection
         title="Choose a top"
         items={tops}
         selectedItemId={selectedTop}
         onSelect={setSelectedTop}
-        onRefresh={() => refreshItems("tops", setTops)}
+        onRefresh={() => refreshItems('tops', setTops)}
       />
 
       <ClothingGridSection
@@ -97,7 +97,7 @@ export default function StyleChallengeCard() {
         items={bottoms}
         selectedItemId={selectedBottom}
         onSelect={setSelectedBottom}
-        onRefresh={() => refreshItems("pants", setBottoms)}
+        onRefresh={() => refreshItems('pants', setBottoms)}
       />
 
       <ClothingGridSection
@@ -105,11 +105,11 @@ export default function StyleChallengeCard() {
         items={shoes}
         selectedItemId={selectedShoe}
         onSelect={setSelectedShoe}
-        onRefresh={() => refreshItems("shoes", setShoes)}
+        onRefresh={() => refreshItems('shoes', setShoes)}
       />
 
       <div className="pt-2">
-        <PillButton text="next" onClick={handleNext} />
+        <PillButton text="Next" onClick={handleSubmit} />
       </div>
     </div>
   );

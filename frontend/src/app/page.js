@@ -15,6 +15,7 @@ const Login = () => {
     e.preventDefault();
 
     console.log("Login attempt with:", { username, password });
+    console.log("Server URL:", server_url);
     fetch(`${server_url}/api/login`, {
       method: "POST",
       headers: {
