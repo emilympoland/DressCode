@@ -43,8 +43,12 @@ async def login(data: UserCreate, response: Response) -> Dict:
 
 async def login_helper(user: UserData, response: Response) -> Dict:
     
+    
+    
     # Create a token with the username as subject
+    # ok something is wrong in here
     token = create_access_token({"sub": user.username})
+    
     # Set the token in a cookie so the client doesn't have to attach it manually
     response.set_cookie(
         key="access_token",
@@ -52,6 +56,7 @@ async def login_helper(user: UserData, response: Response) -> Dict:
         httponly=True,
         max_age=ACCESS_TOKEN_EXPIRE_MINUTES * 60  # Cookie expires in same duration as the token
     )
+    
     return {
         "access_token": token,
         "token_type": "bearer"
