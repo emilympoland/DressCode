@@ -75,7 +75,14 @@ export default function Challenge() {
           onNext={handleNext}
         />
       )}
-      {currentStep === 3 && <OutfitSavedConfirmation />}
+      {currentStep === 3 && (
+        <OutfitSavedConfirmation
+          imageUrls={summaryData.image_urls} // Pass the image URLs
+          outfitItemIds={summaryData.outfit_ids} // Pass the clothing item IDs
+          username={username} // Pass the username
+          // profilePicUrl={profilePicUrl} // Pass the profile picture URL
+        />
+      )}
     </div>
   );
 }

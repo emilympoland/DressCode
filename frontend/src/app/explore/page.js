@@ -1,63 +1,61 @@
-// app/explore/page.js
-
 'use client';
-import { useState } from 'react';
+
+import { useState, useEffect } from 'react';
+import { useRouter } from 'next/navigation';
 import FeedPost from '../../components/FeedPost';
 import ExpandedPost from '../../components/ExpandedPost';
 import DateSelector from '../../components/DateSelector';
 import '../globals.css';
 
 export default function Explore() {
-  // Updated posts data to include both single items and outfits
-  const dummyPosts = [
-    {
-      id: 1,
-      username: 'sophia_style',
-      userAvatar: '/avatar1.jpg',
-      caption: 'Some of my favorite pieces this season!',
-      isOutfit: true, // This is an outfit post with multiple items
-      items: [
-        { id: 'top1', image: 'Clothes/top1.jpg', name: 'White Button Shirt', category: 'Tops' },
-        { id: 'bottom2', image: 'Clothes/pants2.jpg', name: 'Black Jeans', category: 'Bottoms' },
-        { id: 'shoe3', image: 'Clothes/shoe3.jpg', name: 'Ankle Boots', category: 'Shoes' }
-      ]
-    },
-    {
-      id: 2,
-      username: 'fashion_forward',
-      userAvatar: '/avatar2.jpg',
-      caption: 'My new favorite shirt!',
-      isOutfit: false, // This is a single item post
-      items: [
-        { id: 'top2', image: 'Clothes/top2.jpg', name: 'Blue Sweater', category: 'Tops' }
-      ]
-    },
-    {
-      id: 3,
-      username: 'style_maven',
-      userAvatar: '/avatar3.jpg',
-      caption: 'Perfect combo for fall weather.',
-      isOutfit: true,
-      items: [
-        { id: 'top3', image: 'Clothes/top3.jpg', name: 'Striped Tee', category: 'Tops' },
-        { id: 'bottom1', image: 'Clothes/pants1.jpg', name: 'Denim Jeans', category: 'Bottoms' },
-        { id: 'shoe1', image: 'Clothes/shoe1.jpg', name: 'Casual Sneakers', category: 'Shoes' }
-      ]
-    }
-  ];
+  const server_url = process.env.NEXT_PUBLIC_SERVER_URL;
+  const router = useRouter();
 
-  // We'll still track borrow requests in state, but won't display them in the feed
+  const [posts, setPosts] = useState([]); // Store posts fetched from the API
   const [borrowRequests, setBorrowRequests] = useState([]);
   const [view, setView] = useState('feed'); // 'feed', 'detail', 'dateSelect', 'requestSent'
   const [selectedItem, setSelectedItem] = useState(null);
 
-  // individual item click in feed
+  // Fetch feed data from the backend
+  useEffect(() => {
+    const fetchFeed = async () => {
+      try {
+        const response = await fetch(`${server_url}/api/feed`, {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          credentials: 'include', // Include cookies for authentication
+        });
+
+        if (response.status === 401) {
+          console.log('Not logged in');
+          router.push('/'); // Redirect to login if not authenticated
+          return;
+        }
+
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+
+        const data = await response.json();
+        // console.log('feed data', data)
+        setPosts(data); // Save the fetched posts to state
+      } catch (error) {
+        console.error('Error fetching feed data:', error);
+      }
+    };
+
+    fetchFeed();
+  }, [server_url, router]); // Re-fetch feed data when the page is loaded
+
+  // Individual item click in feed
   const handleItemClick = (item) => {
     setSelectedItem(item);
     setView('detail');
   };
 
-  // back button
+  // Back button
   const handleBack = () => {
     if (view === 'detail') {
       setView('feed');
@@ -68,12 +66,12 @@ export default function Explore() {
     }
   };
 
-  // request to borrow
+  // Request to borrow
   const handleRequestBorrow = () => {
     setView('dateSelect');
   };
 
-  // confirm date
+  // Confirm date
   const handleConfirmDate = () => {
     // Create a new borrow request with selected item data
     const newRequest = {
@@ -83,7 +81,7 @@ export default function Explore() {
       itemImage: selectedItem.image,
       borrower: 'You',
       dateRange: 'April 26 - May 3, 2025',
-      status: 'pending'
+      status: 'pending',
     };
 
     // Add this request to the borrowRequests state
@@ -96,12 +94,10 @@ export default function Explore() {
   return (
     <main>
       {view === 'feed' && (
-        <div className="feed-container ">
-          {/* <p className="feed-title">Explore Feed</p> */}
-          
-          {dummyPosts.map(post => (
+        <div className="feed-container">
+          {posts.map((post, index) => (
             <FeedPost
-              key={post.id}
+              key={post.id || index} // Use post.id if available, otherwise fallback to index
               post={post}
               onItemClick={handleItemClick}
             />

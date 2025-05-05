@@ -62,5 +62,10 @@ async def submit_outfit(
             top_item.image_url,
             bottom_item.image_url,
             shoe_item.image_url
+        ], 
+        "outfit_ids": [
+            top_id,
+            bottom_id,
+            shoe_id
         ]
     }
