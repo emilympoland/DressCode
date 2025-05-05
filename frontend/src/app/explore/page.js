@@ -5,6 +5,7 @@ import { useRouter } from 'next/navigation';
 import FeedPost from '../../components/FeedPost';
 import ExpandedPost from '../../components/ExpandedPost';
 import DateSelector from '../../components/DateSelector';
+import PillButton from '../../components/PillButton';
 import '../globals.css';
 
 export default function Explore() {
@@ -122,19 +123,18 @@ export default function Explore() {
       )}
 
       {view === 'requestSent' && (
-        <div className="flex items-center justify-center min-h-screen -mt-8">
-          <div className="feed-container">
-            <div className="text-center px-5 py-10">
-              <h2>Request Sent!</h2>
-              <p>Your borrow request for {selectedItem?.name} has been sent to the owner.</p>
-              <button
-                className="borrow-button mx-auto max-w-[200px] px-8"
-                onClick={handleBack}
-              >
-                Back to Feed
-              </button>
-            </div>
-          </div>
+        <div className="flex flex-col items-center justify-center min-h-[calc(100vh-4rem)] p-10">
+          <img src={"/check.png"} alt="check" className="w-1/2 h-auto object-cover rounded-md mb-4" />
+          <h1 className="font-bricolage font-extralight text-[22px] text-black text-center mb-4">
+            Request Sent!
+            Your borrow request has been sent to the owner.
+          </h1>
+          <PillButton
+            text="return to home"
+            onClick={() => setView('feed')} // Set the view back to 'feed'
+            bgColor={'bg-[#EF6A3F]'}
+            textColor={'text-[#F9F4E7]'}
+          />
         </div>
       )}
     </main>

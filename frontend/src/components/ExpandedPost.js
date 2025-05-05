@@ -8,16 +8,10 @@ export default function ExpandedPost({ item, onBack, onRequestBorrow }) {
         <h3 className="font-alexandria">{item.name}</h3>
         
         <img
-          src={item.image}
+          src={item.image_url}
           alt={item.name}
           className="detail-image"
         />
-        
-        <div className="item-info">
-          <div className="categories font-alexandria">
-            Category: {item.category}
-          </div>
-        </div>
         
         <div className="button-row">
           <button className="back-button font-alexandria" onClick={onBack}>

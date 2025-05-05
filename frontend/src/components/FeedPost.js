@@ -1,22 +1,49 @@
 'use client';
+import { useEffect, useState } from 'react';
 import '../app/globals.css';
 
-// Mock function to map outfit_item_ids to item details
-// Replace this with actual logic to fetch item details if needed
-const getItemDetails = (itemId) => {
-  const mockItems = {
-    1: { id: 1, name: "Top", image: "top.jpg" },
-    2: { id: 2, name: "Bottom", image: "bottom.jpg" },
-    3: { id: 3, name: "Shoes", image: "shoes.jpg" },
-  };
-  return mockItems[itemId] || { id: itemId, name: "Unknown", image: "placeholder.jpg" };
-};
-
 export default function FeedPost({ post, onItemClick }) {
-  console.log('post is', post);
+  const [items, setItems] = useState([]); // Store item details
+  const [loading, setLoading] = useState(true); // Track loading state
 
-  // Map outfit_item_ids to item details
-  const items = post.outfit_item_ids.map(getItemDetails);
+  const backendUrl = process.env.NEXT_PUBLIC_SERVER_URL || 'http://localhost:8000'; // Use environment variable or fallback to localhost:8000
+
+  // Fetch item details based on outfit_item_ids
+  useEffect(() => {
+    const fetchItems = async () => {
+      try {
+        const fetchedItems = await Promise.all(
+          post.outfit_item_ids.map(async (itemId) => {
+            const response = await fetch(`${backendUrl}/api/closet/item/${itemId}`, {
+              method: 'GET',
+              headers: {
+                'Content-Type': 'application/json',
+              },
+              credentials: 'include', // Include cookies for authentication
+            });
+
+            if (!response.ok) {
+              throw new Error(`Failed to fetch item with ID ${itemId}`);
+            }
+
+            return await response.json();
+          })
+        );
+        console.log('Fetched items:', fetchedItems);
+        setItems(fetchedItems);
+      } catch (error) {
+        console.error('Error fetching item details:', error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchItems();
+  }, [post.outfit_item_ids, backendUrl]);
+
+  if (loading) {
+    return <div>Loading...</div>; // Show a loading state while fetching items
+  }
 
   return (
     <div className="post-container">
@@ -28,19 +55,19 @@ export default function FeedPost({ post, onItemClick }) {
       <div className="caption font-bricolage">
         {post.caption}
       </div>
-      
+
       <div className={`items-container ${items.length > 1 ? 'outfit-layout' : 'single-item'}`}>
         {items.map(item => (
           <div key={item.id} className="item-box">
-            <img 
-              src={item.image} 
-              alt={item.name} 
+            <img
+              src={item.image_url}
+              alt={item.name}
               className="item-image"
-              onClick={() => onItemClick(item)}
+              onClick={() => onItemClick(item)} // Pass the full item object
             />
-            <button 
+            <button
               className="item-request-button"
-              onClick={() => onItemClick(item)}
+              onClick={() => onItemClick(item)} // Pass the full item object
             >
               borrow
             </button>

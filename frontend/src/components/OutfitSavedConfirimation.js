@@ -16,6 +16,8 @@ export default function OutfitSavedConfirmation({ outfitItemIds, username, profi
                 profile_pic_url: profilePicUrl, // Optional profile picture URL
             };
 
+            console.log('Post object to be sent:', post);
+
             // Make a POST request to create a feed post
             const response = await fetch('http://localhost:8000/api/feed/post', {
                 method: 'POST',

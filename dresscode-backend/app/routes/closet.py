@@ -35,9 +35,11 @@ async def get_closet(user: UserData = Depends(get_current_user_from_token)) -> L
     items = get_closet_items(user)
     return [asdict(item)for item in items]
 
-@router.get("api/closet/item/{item_id}")
+@router.get("/api/closet/item/{item_id}")
 async def get_item(item_id: int, user: UserData = Depends(get_current_user_from_token)):
-    if item_id not in user.wardrobe:
+    print(f"Received get_item request for item_id: {item_id}")
+    print(f"User wardrobe: {user.wardrobe}")
+    if item_id not in user.wardrobe:    
         raise HTTPException(status_code=500, detail="Item not in wardrobe")
     
     return asdict(get_closet_item(item_id))
