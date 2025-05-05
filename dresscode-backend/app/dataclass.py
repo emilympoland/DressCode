@@ -63,19 +63,32 @@ class BorrowRequest:
 
 
 @dataclass
+class Collection:
+    name: str
+    item_ids: List[int] = field(default_factory=list)
+
+
+    def __init__(self, name: str, item_ids: List[int]):
+        self.name = name
+        self.item_ids = item_ids
+
+
+@dataclass
 class UserData:
     username: str
     password: str
-    profile_pic_url: str
     wardrobe: List[int] = field(default_factory=list)
     requests: List[int] = field(default_factory=list)
+    collections: List[Collection] = field(default_factory=list)
+    profile_pic_url: str = ""
 
 
-    def __init__(self, username: str, password: str, wardrobe: List[int], requests: List[int], profile_pic_url: str = ""):
+    def __init__(self, username: str, password: str, wardrobe: List[int], requests: List[int], collections: List[Collection], profile_pic_url: str = ""):
         self.username = username
         self.password = password
         self.profile_pic_url = profile_pic_url
         self.wardrobe = wardrobe
+        self.collections = collections
         self.requests = requests
 
 

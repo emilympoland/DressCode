@@ -1,7 +1,7 @@
 from typing import Union
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from app.routes import login, closet, outfit, borrow, feed, challenge
+from app.routes import login, closet, outfit, borrow, feed, challenge, collections
 from app.core.config import client_url
 
 app = FastAPI()
@@ -22,6 +22,7 @@ app.include_router(outfit.router)
 app.include_router(borrow.router)
 app.include_router(feed.router)
 app.include_router(challenge.router)
+app.include_router(collections.router)
 
 @app.get("/")
 def read_root():

@@ -32,6 +32,7 @@ def user_create(user: UserCreate) -> UserData:
         password=user.password,
         wardrobe=[],
         requests=[],
+        collections=[],
         profile_pic_url="",
     )
     
