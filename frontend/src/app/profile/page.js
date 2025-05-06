@@ -21,7 +21,7 @@ export default function Profile() {
   const [activeTab, setActiveTab] = useState("myCloset");
   const [filterCategory, setFilterCategory] = useState(null);
   const [selectMode, setSelectMode] = useState(false);
-  const categories = ["Shirts", "Pants", "Shoes", "Tops"];
+  const categories = ["shirts", "pants", "shoes", "tops"];
 
   useEffect(() => {
     fetch(`${server_url}/api/closet`, {
