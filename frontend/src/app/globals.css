@@ -476,6 +476,7 @@ a {
 
 /* styling for messages page */
 .messages-header {
+  font-family: 'Alexandria', sans-serif;
   font-size: 32px;
   font-weight: bold;
   text-align: center;
@@ -508,6 +509,7 @@ a {
 }
 
 .message-preview-name {
+  font-family: 'Alexandria', sans-serif;
   font-weight: bold;
   color: #D9F855;  
   font-size: 24px;
@@ -517,12 +519,14 @@ a {
   color: #333;
   margin: 0;
   font-size: 14px;
+  font-family: 'Alexandria', sans-serif;
 }
 
 .message-preview-time {
   color: #333;
   font-size: 14px;
   align-self: flex-start;
+  font-family: 'Alexandria', sans-serif;
 }
 
 #message-preview-avatar {

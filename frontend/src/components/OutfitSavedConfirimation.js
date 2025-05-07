@@ -42,8 +42,8 @@ export default function OutfitSavedConfirmation({ outfitItemIds, username, profi
     return (
         <div className="flex flex-col items-center p-10">
             <img src={"/check.png"} alt="check" className="w-1/2 h-auto object-cover rounded-md mb-4" />
-            <h1 className="font-bricolage font-extralight text-[22px] text-black text-center mb-4">
-                This outfit has been saved to your closet.
+            <h1 className="font-bricolage font-extralight text-[18px] text-black text-center mb-4">
+               This outfit has been shared to your feed.
             </h1>
             <PillButton 
                 text="return to home" 
