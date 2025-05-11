@@ -28,3 +28,9 @@ Then setup a Python virtual environment and run:
 pip install -r requirements.txt
 fastapi dev app/main.py
 ```
+
+After starting the backend server, cd into dresscode-backend/tests and run the following script to register two users and load items into memory.
+```
+python3 -m test_presentation
+```
+The two registered users are jeffrey (pw: 123) and william (pw: 456).
