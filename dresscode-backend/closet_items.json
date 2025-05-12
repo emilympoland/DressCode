@@ -5,7 +5,7 @@
         "clothing_type": "tops",
         "season": "warm",
         "status": "active",
-        "description": "This is a cozy, hand-knitted striped sweater featuring earthy tones and soft, natural hues. The relaxed fit and muted rainbow stripes give off a warm, vintage, and laid-back vibe, perfect for a casual, bohemian style. Ideal for cool weather, this sweater is great for fall or winter, keeping you comfortable and stylish on chilly days.",
+        "description": "This is a cozy, hand-knit pullover sweater featuring earthy, multicolored horizontal stripes. The relaxed, slightly oversized fit and soft texture give it a laid-back, homespun, and artsy vibe. Perfect for autumn or winter, this sweater is ideal for layering on chilly days, keeping you warm and comfortable in cool to cold weather.",
         "borrowed": false
     },
     "1": {
@@ -14,7 +14,7 @@
         "clothing_type": "tops",
         "season": "warm",
         "status": "active",
-        "description": "This is a sleeveless, light blue sequin tank top, perfect for parties or nights out. The shimmery sequins give it a glamorous, fun, and bold vibe, ideal for making a statement. It\u2019s best suited for warm weather or indoor events, as it\u2019s lightweight and breezy.",
+        "description": "This is a sleeveless, light blue sequin tank top that gives off a fun, glamorous, and party-ready vibe. Its shimmering, eye-catching style is perfect for clubbing, festivals, or special occasions. The sleeveless design makes it ideal for warm weather or layering under a jacket in cooler conditions.",
         "borrowed": false
     },
     "2": {
@@ -23,7 +23,7 @@
         "clothing_type": "tops",
         "season": "warm",
         "status": "active",
-        "description": "This is a delicate, white camisole top featuring thin lace-trimmed straps and a subtle floral pattern with a small bow at the front. The design is feminine, soft, and vintage-inspired, exuding a gentle, romantic vibe. Lightweight and sleeveless, this camisole is ideal for warm spring or summer weather, making it perfect for layering or wearing alone on hot, sunny days.",
+        "description": "This is a delicate white camisole top featuring lace-trimmed straps and a subtle floral pattern, accented with a small bow at the waist. The style is feminine, airy, and romantic, giving off a soft, vintage-inspired vibe. Ideal for layering or wearing alone, this top is perfect for warm spring or summer weather due to its lightweight and breathable fabric.",
         "borrowed": false
     },
     "3": {
@@ -32,7 +32,7 @@
         "clothing_type": "tops",
         "season": "warm",
         "status": "active",
-        "description": "This is a halter top with a deep V neckline, decorated in an intricate, bohemian-inspired pattern with bead embellishments. The fabric and backless style give it a relaxed, vintage, and festival-ready vibe, perfect for summer or warm spring weather. The lightweight material and open design make it ideal for keeping cool while maintaining a stylish, carefree look.",
+        "description": "This is a bohemian-style halter top featuring a vintage-inspired paisley pattern and embellished with subtle sequins. The deep V-neck and lightweight fabric give it a relaxed, free-spirited vibe, perfect for festivals or casual summer outings. Ideal for warm weather due to its sleeveless design and breathable material.",
         "borrowed": false
     },
     "4": {
@@ -41,7 +41,7 @@
         "clothing_type": "tops",
         "season": "warm",
         "status": "active",
-        "description": "This is a long-sleeved, horizontal striped sweater with a relaxed fit and a crew neckline. Its black and beige stripes give it a casual, laid-back vibe, perfect for cozy, everyday wear. The soft, knit material suggests comfort and warmth, making it ideal for cool or mildly chilly weather in autumn or spring.",
+        "description": "This is a cozy, long-sleeved knit sweater featuring classic horizontal black and beige stripes. With a relaxed fit and slightly cropped length, it gives off a casual, laid-back, and effortlessly cool vibe. Perfect for layering, this sweater is ideal for mild to chilly weather, such as fall or spring days, or cooler summer evenings.",
         "borrowed": false
     },
     "5": {
@@ -50,7 +50,7 @@
         "clothing_type": "tops",
         "season": "warm",
         "status": "active",
-        "description": "This is a light green, fuzzy knit sweater with long sleeves and a relaxed, slightly boxy fit. The soft texture and cozy appearance give off a casual, laid-back vibe with a touch of retro charm. Ideal for chilly weather, this sweater is perfect for fall or winter, offering warmth and comfort while maintaining a stylish, effortlessly cool look.",
+        "description": "This is a cozy, soft green knitted sweater with a relaxed, slightly oversized fit and a rolled neckline. The style is casual yet chic, giving off a laid-back, comfortable, and nature-inspired vibe. The fuzzy texture adds warmth and a touch of vintage charm. Ideal for cool autumn or winter weather, it\u2019s perfect for layering or wearing on its own for a snug, stylish look.",
         "borrowed": false
     },
     "6": {
@@ -59,7 +59,7 @@
         "clothing_type": "tops",
         "season": "warm",
         "status": "active",
-        "description": "This is a delicate, cream-colored camisole with lace detailing around the neckline and straps. Its lightweight, silky fabric and spaghetti straps give off a feminine, vintage-inspired, and romantic vibe. Perfect for layering or wearing alone, this top is ideal for warm weather or as a sleepwear/loungewear piece during spring and summer.",
+        "description": "This is a cream-colored satin camisole with delicate lace trim along the neckline and straps. Its spaghetti straps and light, airy fabric give it a soft, feminine, vintage-inspired vibe, making it both romantic and relaxed. Perfect for warm or mild weather, this camisole is ideal for layering or wearing on its own during spring or summer.",
         "borrowed": false
     },
     "7": {
@@ -68,7 +68,7 @@
         "clothing_type": "pants",
         "season": "warm",
         "status": "active",
-        "description": "This is a lightweight, floral wrap skirt with a soft pastel pattern. Its flowy, ruffled hem gives off a feminine, romantic, and bohemian vibe\u2014perfect for casual outings or garden parties. Made from airy fabric, it\u2019s ideal for warm spring or summer weather, keeping you cool and stylish.",
+        "description": "This is a flowy, floral-print midi skirt made of a lightweight, semi-sheer fabric. The ruffled hem and soft pastel pattern give it a romantic, vintage-inspired, and feminine vibe. Ideal for spring or summer weather, it feels airy and perfect for casual outings, picnics, or laid-back gatherings.",
         "borrowed": false
     },
     "8": {
@@ -77,7 +77,7 @@
         "clothing_type": "pants",
         "season": "warm",
         "status": "active",
-        "description": "These are wide-leg, striped, linen-blend pants with a vintage-inspired style. The earthy colors and relaxed fit give off a laid-back, bohemian vibe, perfect for casual outings or creative environments. The lightweight, breathable fabric makes these pants ideal for warm spring or summer weather, keeping you cool and comfortable.",
+        "description": "These are vintage-inspired, wide-leg striped pants with a relaxed fit and a unique earth-toned, muted color palette. The soft, lightweight material and loose cut give them a laid-back, bohemian or retro vibe. Best suited for mild to warm weather, these pants would be comfortable for spring and autumn, or cool summer days, offering effortless, casual style.",
         "borrowed": false
     },
     "9": {
@@ -86,7 +86,7 @@
         "clothing_type": "pants",
         "season": "warm",
         "status": "active",
-        "description": "These are loose-fitting, lightweight, striped lounge pants made from a breathable fabric, likely linen or cotton. The relaxed, flowy cut and subtle pastel stripes evoke a laid-back, beachy, and casual vibe, perfect for lounging or casual outings. Ideal for warm or mild weather, these pants offer cool comfort and a carefree, summery style.",
+        "description": "These are loose-fitting, striped linen pants featuring blue and white tones. Their relaxed style and lightweight, breathable fabric give off a laid-back, beachy, and effortlessly cool vibe. Ideal for warm weather, they are perfect for summer days, vacations, or casual lounging, offering comfort and easy movement.",
         "borrowed": false
     },
     "10": {
@@ -95,7 +95,7 @@
         "clothing_type": "pants",
         "season": "warm",
         "status": "active",
-        "description": "These are high-waisted, wide-leg striped pants with a relaxed fit and tie-waist detail. The pink and white stripes give off a fun, playful, and breezy summer vibe, ideal for casual outings or vacation. Made from lightweight material, these pants are perfect for warm or mildly cool weather, offering comfort and effortless style.",
+        "description": "These are wide-leg, high-waisted pants with pink and white vertical stripes and a relaxed fit. The drawstring waistband adds a laid-back, bohemian vibe, making them perfect for casual outings or lounging. The light, airy fabric suggests they are ideal for spring or summer weather, providing comfort and breathability on warm days.",
         "borrowed": false
     },
     "11": {
@@ -104,7 +104,7 @@
         "clothing_type": "pants",
         "season": "warm",
         "status": "active",
-        "description": "These are high-waisted, straight-leg blue jeans with a classic five-pocket design. The light wash and relaxed fit give off a casual, effortless, and retro vibe, perfect for laid-back or vintage-inspired looks. Ideal for mild to cool weather, these jeans are versatile enough for spring, fall, or even summer evenings.",
+        "description": "These are classic straight-leg blue jeans with a high waist and relaxed fit, giving off a vintage, effortlessly cool vibe. The style is casual and timeless, perfect for laid-back days or casual outings. Suitable for mild to cool weather, they can be paired with sweaters in fall or t-shirts in spring.",
         "borrowed": false
     },
     "12": {
@@ -113,7 +113,7 @@
         "clothing_type": "pants",
         "season": "warm",
         "status": "active",
-        "description": "These are light-wash, wide-leg jeans with a vintage, relaxed vibe. The faded denim and loose fit give them a laid-back, retro feel, perfect for casual outings or street style looks. This type of jeans is ideal for mild to cool weather, offering comfort and breathability while still providing some coverage.",
+        "description": "These are light-wash, wide-leg jeans, featuring a relaxed, retro-inspired style. The distressed, slightly faded denim gives off a laid-back, vintage, and effortlessly cool vibe. These jeans are ideal for casual outings and fit well with a relaxed or bohemian aesthetic. Best suited for mild to cool weather, they offer comfort and breathability while still providing coverage.",
         "borrowed": false
     },
     "13": {
@@ -122,7 +122,7 @@
         "clothing_type": "shoes",
         "season": "warm",
         "status": "active",
-        "description": "These are chunky, brown platform slide sandals with a high block heel and buckle accent, giving off a retro, 1970s-inspired vibe. The open-toe and slip-on style feel bold yet casual, perfect for adding height and a touch of vintage flair to summer or warm-weather outfits. Ideal for sunny days and casual outings where you want to make a statement.",
+        "description": "These are chunky platform heeled sandals with a thick heel and a wide leather strap featuring a buckle detail. The retro, 70s-inspired design gives a bold, vintage, and effortlessly cool vibe\u2014perfect for someone who enjoys making a statement. These shoes are best suited for warm weather, such as spring or summer, as they're open-toed and provide breathability.",
         "borrowed": false
     },
     "14": {
@@ -131,7 +131,7 @@
         "clothing_type": "shoes",
         "season": "warm",
         "status": "active",
-        "description": "These are classic Adidas Samba sneakers, known for their sporty, retro style. Featuring a mix of white leather, green suede, and iconic black stripes, they give off a laid-back, casual, and vintage vibe. Perfect for everyday wear, they suit mild to cool weather, thanks to their sturdy build and closed design.",
+        "description": "These are classic Adidas Samba sneakers, featuring olive green suede, white leather, and black stripes. With a sporty and casual style, they give off a vintage, laid-back vibe that works well for everyday streetwear. Ideal for mild to cool weather, they\u2019re perfect for spring and autumn days, offering comfort and versatile style.",
         "borrowed": false
     },
     "15": {
@@ -140,7 +140,7 @@
         "clothing_type": "shoes",
         "season": "warm",
         "status": "active",
-        "description": "These are white and light gray Onitsuka Tiger sneakers, featuring a classic, minimalist design. Their retro yet sporty style gives off a clean, casual, and effortlessly cool vibe, making them versatile for everyday wear. Perfect for mild to warm weather, they pair well with jeans, shorts, or athleisure outfits, adding a touch of understated style to any look.",
+        "description": "These are classic white sneakers with subtle gray accents, featuring a retro athletic style. The design is minimalist and clean, giving off a trendy, casual, and effortlessly cool vibe. Perfect for everyday wear, these sneakers are best suited for mild or warm weather, ideal for spring and summer outings. Their versatile look makes them a great match for jeans, shorts, or casual dresses.",
         "borrowed": false
     },
     "16": {
@@ -149,7 +149,7 @@
         "clothing_type": "shoes",
         "season": "warm",
         "status": "active",
-        "description": "These are classic Adidas low-top sneakers featuring a retro, sporty style with blue suede, off-white stripes, and maroon accents. They exude a vintage-casual vibe perfect for everyday wear, effortlessly balancing style and comfort. These shoes are ideal for mild to cool weather during spring or fall, offering versatility for both streetwear and relaxed outdoor activities.",
+        "description": "These are casual Adidas sneakers featuring a retro-inspired design with blue suede, cream stripes, and a maroon heel accent. They give off a cool, sporty, and laid-back vibe, perfect for streetwear or everyday outfits. Best suited for mild to cool weather, they\u2019re ideal for spring or autumn when it\u2019s dry, as suede can get damaged in wet conditions.",
         "borrowed": false
     },
     "17": {
@@ -158,7 +158,7 @@
         "clothing_type": "shoes",
         "season": "warm",
         "status": "active",
-        "description": "These are chunky, open-toed leather slide sandals with playful floral cutout details. The thick sole and detailed stitching give them a retro, 90s-inspired vibe, merging comfort with a touch of bold style. Perfect for casual, laid-back outfits, they offer a relaxed and quirky look. These sandals are ideal for warm spring or summer weather.",
+        "description": "These are chunky black leather slide sandals featuring a playful cut-out flower design and contrasting stitching. Their retro, 90s-inspired style gives off a laid-back and quirky vibe, perfect for those who like to add a touch of fun to their casual outfits. The open-toe and backless design make them ideal for warm, sunny weather\u2014great for spring and summer days.",
         "borrowed": false
     },
     "18": {
@@ -167,7 +167,34 @@
         "clothing_type": "shoes",
         "season": "warm",
         "status": "active",
-        "description": "These are rugged, mid-calf leather engineer boots in a distressed brown finish, evoking a classic Americana or biker style. The hardware detailing and sturdy build give off a tough, adventurous vibe. Ideal for cool to cold weather, these boots are both protective and stylish, perfect for outdoor activities or casual wear with a vintage edge.",
+        "description": "These are rugged, mid-calf engineer boots made of distressed brown leather, featuring a sturdy harness strap and solid sole. Their classic western-meets-motorcycle style gives off a bold, adventurous vibe, perfect for those who value durability and a touch of rebellion. Best suited for cool to mild weather, these boots provide protection and comfort in fall or spring, and are ideal for both casual wear and outdoor activities.",
+        "borrowed": false
+    },
+    "19": {
+        "id": 19,
+        "image_url": "https://xcdn.next.co.uk/common/items/default/default/itemimages/3_4Ratio/product/lge/480780s2.jpg",
+        "clothing_type": "shirts",
+        "season": "warm",
+        "status": "active",
+        "description": "This is a classic short-sleeve white button-up shirt with a pointed collar and a chest pocket. Its crisp, clean style gives a smart, polished, and versatile vibe, suitable for both formal and casual settings. Ideal for warm weather due to its short sleeves and lightweight fabric, it\u2019s perfect for school, work, or any event that calls for a neat appearance.",
+        "borrowed": false
+    },
+    "20": {
+        "id": 20,
+        "image_url": "https://sugarloafclothingco.co.uk/cdn/shop/files/BrumbyAustralianWorkShirt_Unisex_-Cobalt.png",
+        "clothing_type": "shirts",
+        "season": "warm",
+        "status": "active",
+        "description": "This is a long-sleeve button-up shirt in a striking royal blue color, featuring two chest pockets with button flaps. The style is rugged and outdoorsy, giving off a practical yet bold vibe\u2014perfect for workwear or casual outdoor adventures. The long sleeves make it ideal for mild to cool weather, providing both comfort and protection.",
+        "borrowed": false
+    },
+    "21": {
+        "id": 21,
+        "image_url": "https://www.plain-t-shirts.co.uk/image/cache/data/polo%20shirts/black-polo-600x800.jpg",
+        "clothing_type": "shirts",
+        "season": "warm",
+        "status": "active",
+        "description": "This is a classic black polo shirt with short sleeves and a collar, featuring a simple button placket. The style is smart-casual, offering a balance between laid-back and polished, making it versatile for both relaxed and semi-formal settings. It gives off a neat, understated, and confident vibe. This shirt is ideal for mild to warm weather, such as spring or summer, thanks to its short sleeves and likely lightweight material.",
         "borrowed": false
     }
 }

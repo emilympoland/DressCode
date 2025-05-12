@@ -1,181 +1,176 @@
-@import url('https://fonts.googleapis.com/css2?family=Alexandria:wght@100..900&display=swap');
-
+@import url("https://fonts.googleapis.com/css2?family=Alexandria:wght@100..900&display=swap");
 
 #header-profile {
-    font-family: "Alexandria", sans-serif;
-    display: flex;
-    flex-direction: row;
-    gap: 30px;
-    padding: 30px;
-    color: black;
+  font-family: "Alexandria", sans-serif;
+  display: flex;
+  flex-direction: row;
+  gap: 30px;
+  padding: 30px;
+  color: black;
 }
 
 h2 {
-    font-family: "Alexandria", sans-serif;
-    color: black;
+  font-family: "Alexandria", sans-serif;
+  color: black;
 }
 
 #profile_picture {
-    width: 50px;
-    border-radius: 100%;
-
+  width: 50px;
+  border-radius: 100%;
 }
 
 .popup-button {
-    font-family: "Alexandria", sans-serif;
-    border-radius: 30px;
-    padding: 10px;
-    margin: 5px;
-    padding-left: 40px;
-    padding-right: 40px;
-    background-color: #EF6A3F;
-
+  font-family: "Alexandria", sans-serif;
+  border-radius: 30px;
+  padding: 10px;
+  margin: 5px;
+  padding-left: 40px;
+  padding-right: 40px;
+  background-color: #ef6a3f;
 }
 
 .purpleButton {
-    font-family: "Alexandria", sans-serif;
-    border-radius: 20px;
-    padding: 20px;
-    margin: 10px;
-    background-color: #96A8FD;
+  font-family: "Alexandria", sans-serif;
+  border-radius: 20px;
+  padding: 20px;
+  margin: 10px;
+  background-color: #96a8fd;
 }
 
 #myCloset {
-    font-family: "Alexandria", sans-serif;
-    background-color: #EF6A3F;
+  font-family: "Alexandria", sans-serif;
+  background-color: #ef6a3f;
 }
 
 #savedOutfits {
-    font-family: "Alexandria", sans-serif;
-    background-color: #EF6A3F;
+  font-family: "Alexandria", sans-serif;
+  background-color: #ef6a3f;
 }
 .tabButton {
-    font-family: "Alexandria", sans-serif;
-    padding: 10px 30px;
-    padding-bottom: 0px;
-    
-    color: black;
-    cursor: pointer;
-    font-size: 16px;
-    border-radius: 10px 10px 0px 0px;
-    margin: 3px;
-    margin-bottom: 0px;
-    
-    transition: background-color 0.3s ease;
-  }
-  
-  .tabButton:hover {
-    font-family: "Alexandria", sans-serif;
-    background-color: rgb(216, 216, 216);
-    color: black;
-  }
-  
-  .activeTab {
-    font-family: "Alexandria", sans-serif;
-    background-color: #EF6A3F; 
-    color: #D9F855;
-    font-weight: bold;
-  }
+  font-family: "Alexandria", sans-serif;
+  padding: 10px 30px;
+  padding-bottom: 0px;
 
-  #myClosetitems {
-    font-family: "Alexandria", sans-serif;
-    display: grid;
-    background-color: #EF6A3F;
-    grid-template-columns: repeat(auto-fill, minmax(100px, 2fr));
-    gap: 16px;
-    padding: 20px;
-  }
-  #myClosetitems img {
-    font-family: "Alexandria", sans-serif;
-    width: 100%;
-    height: auto;
-    border-radius: 8px;
-    object-fit: cover;
-  }
+  color: black;
+  cursor: pointer;
+  font-size: 16px;
+  border-radius: 10px 10px 0px 0px;
+  margin: 3px;
+  margin-bottom: 0px;
 
-  #buttons-area {
-    font-family: "Alexandria", sans-serif;
-    position: fixed;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    bottom: 80px;
-    left: 0;
-    width: 100%;
-  }
+  transition: background-color 0.3s ease;
+}
 
-  .actions {
-    font-family: "Alexandria", sans-serif;
-    position: fixed;
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    bottom: 250px;
-    left: 100px;
-    
+.tabButton:hover {
+  font-family: "Alexandria", sans-serif;
+  background-color: rgb(216, 216, 216);
+  color: black;
+}
 
-  }
+.activeTab {
+  font-family: "Alexandria", sans-serif;
+  background-color: #ef6a3f;
+  color: #d9f855;
+  font-weight: bold;
+}
 
-  .action-buttons {
-    font-family: "Alexandria", sans-serif;
-    background-color: #F9F4E7;
-    color:#EF6A3F;
-    border-radius: 30px;
-    padding: 10px;
-    margin: 5px;
-    padding-left: 40px;
-    padding-right: 40px;
-    font-weight: bold;
+#myClosetitems {
+  font-family: "Alexandria", sans-serif;
+  display: grid;
+  background-color: #ef6a3f;
+  grid-template-columns: repeat(auto-fill, minmax(100px, 2fr));
+  gap: 16px;
+  padding: 20px;
+}
+#myClosetitems img {
+  font-family: "Alexandria", sans-serif;
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+  object-fit: cover;
+}
 
-  }
+#buttons-area {
+  font-family: "Alexandria", sans-serif;
+  position: fixed;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  bottom: 80px;
+  left: 0;
+  width: 100%;
+}
 
-  .tabContent {
-    font-family: "Alexandria", sans-serif;
-    min-height: 100vh;
-    flex-grow: 1; 
-    background-color: #EF6A3F;
+.actions {
+  font-family: "Alexandria", sans-serif;
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  bottom: 250px;
+  left: 100px;
+}
 
-  }
+.action-buttons {
+  font-family: "Alexandria", sans-serif;
+  background-color: #f9f4e7;
+  color: #ef6a3f;
+  border-radius: 30px;
+  padding: 10px;
+  margin: 5px;
+  padding-left: 40px;
+  padding-right: 40px;
+  font-weight: bold;
+}
 
-  #saved-outfits-container {
-    font-family: "Alexandria", sans-serif;
-    margin-bottom: 20px;
-    padding: 10px;
-    border-radius: 10px;
-  }
+.tabContent {
+  font-family: "Alexandria", sans-serif;
+  min-height: 100vh;
+  flex-grow: 1;
+  background-color: #ef6a3f;
+}
 
-  #saved-outfit-item {
-    font-family: "Alexandria", sans-serif;
-    display: flex;
-    flex-direction: row;
-  }
+#saved-outfits-container {
+  font-family: "Alexandria", sans-serif;
+  margin-bottom: 20px;
+  padding: 10px;
+  border-radius: 10px;
+}
 
-  #saved-item {
-    font-family: "Alexandria", sans-serif;
-    width: 100px;
-    height: 100px;
-    margin: 5px;
-  }
+#saved-outfit-item {
+  font-family: "Alexandria", sans-serif;
+  display: flex;
+  flex-direction: row;
+}
 
-  .item-object {
-    font-family: "Alexandria", sans-serif;
-    width: 150px;
-    height:  150px; 
-    display: flex;
-    object-fit: cover;
-  }
-  .item-popup {
-    font-family: "Alexandria", sans-serif;
-    width: 250px; 
-    height: 250px; 
-    object-fit: cover; 
-    margin-top: 50px; 
-    margin-bottom: 20px;
-  }
-  .header {
-    font-family: "Alexandria", sans-serif;
-    color:black; 
-    display: flex; 
-    justify-content: center;
-    font-weight: bold;
-  }
+#saved-item {
+  font-family: "Alexandria", sans-serif;
+  width: 100px;
+  height: 100px;
+  margin: 5px;
+  border-radius: 8px; /* added for rounded corners */
+  object-fit: cover; /* ensures the image fills the container */
+}
+
+.item-object {
+  font-family: "Alexandria", sans-serif;
+  width: 150px;
+  height: 150px;
+  display: flex;
+  object-fit: cover;
+}
+.item-popup {
+  font-family: "Alexandria", sans-serif;
+  width: 250px;
+  height: 250px;
+  object-fit: cover;
+  margin-top: 50px;
+  margin-bottom: 20px;
+}
+.header {
+  font-family: "Alexandria", sans-serif;
+  color: black;
+  display: flex;
+  justify-content: center;
+  font-weight: bold;
+}

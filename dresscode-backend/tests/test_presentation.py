@@ -34,6 +34,12 @@ shoes_links = [
     "https://i.pinimg.com/736x/d4/40/4d/d4404d759a1291c1ca54a14b786445cd.jpg"
 ]
 
+shirts_links = [
+    "https://xcdn.next.co.uk/common/items/default/default/itemimages/3_4Ratio/product/lge/480780s2.jpg",
+    "https://sugarloafclothingco.co.uk/cdn/shop/files/BrumbyAustralianWorkShirt_Unisex_-Cobalt.png",
+    "https://www.plain-t-shirts.co.uk/image/cache/data/polo%20shirts/black-polo-600x800.jpg",
+]
+
 
 # def write_items():
 #     items = get_all_closet_items()
@@ -125,6 +131,16 @@ def test_create_items():
         response = requests.post(f"{BASE_URL}/api/closet/upload", headers=headers, json=item_data)
         assert response.status_code == 200
         print(f"Uploaded shoe {i+1}!")
+
+
+    for i in range(len(shirts_links)):
+        curr = shirts_links[i]
+        headers = headers1 if i % 2 == 0 else headers2
+
+        item_data = {"image_url": curr, "clothing_type": "shirts", "season": "warm"}
+        response = requests.post(f"{BASE_URL}/api/closet/upload", headers=headers, json=item_data)
+        assert response.status_code == 200
+        print(f"Uploaded shirt {i+1}!")
 
     response = requests.get(f"{BASE_URL}/api/closet/serialize")
     assert response.status_code == 200

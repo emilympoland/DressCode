@@ -1,9 +1,9 @@
-'use client';
+"use client";
 
-import './page.css';
+import "./page.css";
 import React, { useState } from "react";
-import Popup from 'reactjs-popup';
-import 'reactjs-popup/dist/index.css';
+import Popup from "reactjs-popup";
+import "reactjs-popup/dist/index.css";
 
 const Upload = () => {
   const [imageUrl, setImageUrl] = useState("");
@@ -11,6 +11,8 @@ const Upload = () => {
   const [fileHasSelected, setHasSelectedFile] = useState(false);
   const [popupOpen, setPopupOpen] = useState(false);
   const [previewSrc, setPreviewSrc] = useState("");
+
+  const server_url = process.env.NEXT_PUBLIC_SERVER_URL;
 
   const handleUpload = () => {
     if (!fileHasSelected && !imageUrl) {
@@ -35,12 +37,39 @@ const Upload = () => {
     setHasSelectedFile(true);
   };
 
+  const handleConfirmUpload = () => {
+    fetch(`${server_url}/api/closet/upload`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      credentials: "include", // add this line
+      body: JSON.stringify({
+        image_url: imageUrl,
+        clothing_type: "tops",
+        season: "warm",
+      }),
+    })
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("Network response was not ok");
+        }
+        return response.json();
+      })
+      .then((data) => {
+        console.log("Login successful:", data);
+      })
+      .catch((error) => {
+        console.error("Login failed:", error);
+      });
+  };
+
   return (
     <div id="upload-container">
-      <h1 >Upload New</h1>
+      <h1>Upload New</h1>
 
       <div>
-        <input type="file" onChange={onFileChange} id="upload-button"/>
+        <input type="file" onChange={onFileChange} id="upload-button" />
       </div>
 
       <div>
@@ -50,8 +79,11 @@ const Upload = () => {
           value={imageUrl}
           onChange={(e) => setImageUrl(e.target.value)}
           id="upload-url-input"
+          style={{ color: "black" }} // this forces the text to be black
         />
-        <button id='upload-button' onClick={handleUpload}>Upload</button>
+        <button id="upload-button" onClick={handleUpload}>
+          Upload
+        </button>
       </div>
 
       <Popup
@@ -60,13 +92,13 @@ const Upload = () => {
         modal
         contentStyle={{
           backgroundColor: "#F9F4E7",
-          width: '350px',
-          height: '450px',
-          borderRadius: '30px',
-          padding: "30px"
+          width: "350px",
+          height: "450px",
+          borderRadius: "30px",
+          padding: "30px",
         }}
       >
-        {close => (
+        {(close) => (
           <div className="modal">
             <div className="content">
               <p style={{ color: "black" }}>Image Preview</p>
@@ -76,18 +108,24 @@ const Upload = () => {
                 style={{
                   maxWidth: "100%",
                   maxHeight: "300px",
-                  objectFit: "contain"
+                  objectFit: "contain",
                 }}
               />
             </div>
             <div className="actions">
-              <button className="action-buttons-popup" onClick={() => {
-                setImageUrl("");
-                setSelectedFile(null);
-                setHasSelectedFile(false);
-                setPreviewSrc("");
-                close();
-              }}>Re-Upload</button>
+              <button
+                className="action-buttons-popup"
+                onClick={() => {
+                  handleConfirmUpload();
+                  setImageUrl("");
+                  setSelectedFile(null);
+                  setHasSelectedFile(false);
+                  setPreviewSrc("");
+                  close();
+                }}
+              >
+                Re-Upload
+              </button>
 
               <button className="action-buttons-popup">Save</button>
             </div>
